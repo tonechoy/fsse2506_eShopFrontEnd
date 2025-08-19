@@ -32,7 +32,7 @@ export default function TopStatus({isLogin}: Props) {
                 <span>Cart</span>
                 <button>
                   <img
-                    src="./../../../public/shopping-cart-light.png"
+                    src="/public/shopping-cart-light.png"
                     width={20}
                     // height={10}
                   />

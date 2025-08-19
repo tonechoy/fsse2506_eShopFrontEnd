@@ -1,5 +1,6 @@
 import ProductItem from "./ProductItem.tsx";
 import type {GetAllProductDto} from "../../../../data/product/product.type.ts";
+import LoadingItem from "../../../component/LoadingItem";
 
 interface Props {
   getAllProductDto: GetAllProductDto[] | undefined;
@@ -14,15 +15,16 @@ export default function ProductContainer({getAllProductDto, isLoading}: Props) {
         <div
           className="grid grid-cols-4 bg-white gap-3.5 mt-3"
         >
-          {/*{ getAllProductDto && !isLoading &&*/}
-          {/*  getAllProductDto.map(() => (*/}
-          {/*  <ProductItem/>*/}
-          {/*))}*/}
+          {
+            isLoading && Array.from({length:10}).map(() => (
+              <LoadingItem/>
+            ))
+          }
 
           {
-            getAllProductDto && !isLoading &&
+            getAllProductDto &&
             getAllProductDto.map((item) => (
-              <ProductItem itemDto={item} key={item.pid}/>
+              <ProductItem itemDto={item} isLoading={isLoading} key={item.pid}/>
             ))
           }
 
