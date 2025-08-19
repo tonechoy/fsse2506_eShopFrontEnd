@@ -1,3 +1,5 @@
+import {Link} from "@tanstack/react-router";
+
 interface Props {
   isLogin: boolean
 }
@@ -5,16 +7,17 @@ interface Props {
 export default function TopStatus({isLogin}: Props) {
 
   return (
-    <div className="flex justify-between px-3 bg-green-950 text-white align-middle h-10">
-
-      <h1 className="self-center">Logo</h1>
+    <div className="flex justify-between px-3 bg-green-950 text-white align-middle h-10 items-center">
+      <Link to={"/"}>
+        <button className="self-center hover:cursor-pointer">Logo</button>
+      </Link>
       <h1 className="text-2xl self-center">Title</h1>
 
       {
         !isLogin
           ? (
             <button
-              className="underline self-center"
+              className="underline self-center hover:cursor-pointer"
             >
               LOGIN
             </button>

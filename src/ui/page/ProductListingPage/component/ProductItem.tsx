@@ -1,4 +1,4 @@
-import type {GetAllProductDto} from "../../../../data/product/getAllProductDto.type.ts";
+import type {GetAllProductDto} from "../../../../data/product/product.type.ts";
 
 interface Props {
   itemDto: GetAllProductDto

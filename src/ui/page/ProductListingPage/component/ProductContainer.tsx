@@ -1,5 +1,5 @@
 import ProductItem from "./ProductItem.tsx";
-import type {GetAllProductDto} from "../../../../data/product/getAllProductDto.type.ts";
+import type {GetAllProductDto} from "../../../../data/product/product.type.ts";
 
 interface Props {
   getAllProductDto: GetAllProductDto[] | undefined;

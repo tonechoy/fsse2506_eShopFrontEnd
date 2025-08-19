@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ErrorIndexRouteImport } from './routes/error/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErrorIndexRoute = ErrorIndexRouteImport.update({
+  id: '/error/',
+  path: '/error/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
@@ -26,27 +32,31 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/error': typeof ErrorIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/error': typeof ErrorIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/error/': typeof ErrorIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/products/$productId'
+  fullPaths: '/' | '/products/$productId' | '/error'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products/$productId'
-  id: '__root__' | '/' | '/products/$productId'
+  to: '/' | '/products/$productId' | '/error'
+  id: '__root__' | '/' | '/products/$productId' | '/error/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
+  ErrorIndexRoute: typeof ErrorIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/error/': {
+      id: '/error/'
+      path: '/error'
+      fullPath: '/error'
+      preLoaderRoute: typeof ErrorIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$productId': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
+  ErrorIndexRoute: ErrorIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
