@@ -17,7 +17,7 @@ export default function ProductListingPage() {
 
   const fetchAllProductDto = async () => {
     const response = await getAllProduct();
-    // setIsLoading(false);
+    setIsLoading(false);
     setIsLogin(false);
     setGetAllProductDto(response);
     // console.log("mockData: ", mockData)

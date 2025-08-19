@@ -61,16 +61,16 @@ export default function ProductDetailPage({isLogin}: Props) {
         isLoading && <LoadingDetail/>
       }
       {product && !isLoading &&
-          <div className="flex-row bg-white w-full h-auto" key={product.pid}>
+          <div className="bg-orange-50 w-full h-auto" key={product.pid}>
 
-              <div className="flex w-6xl mx-auto gap-3">
+              <div className="flex w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
                   <div className="left-container flex-6">
                       <img
                           src={product.imageUrl}
                           className="mx-auto object-contain h-150"
                       />
                   </div>
-                  <div className="right-container flex-4 bg-blue-0 flex-col p-3">
+                  <div className="right-container flex-4 bg-blue-50 flex-col p-3">
                       <p className="text-gray-500 mb-3 capitalize">{product.category}</p>
                       <p className="text-2xl mb-8">{product.name}</p>
                       <p className="text-xl mb-20">${product.price.toLocaleString()}</p>
@@ -100,8 +100,12 @@ export default function ProductDetailPage({isLogin}: Props) {
                                 Sold Out
                               </button>
                             ) : (
-                              <button className="bg-black text-white btn-wide text-lg font-semibold hover:bg-gray-700"
-                                      onClick={handleAddCart}>Add to cart
+                              <button
+                                className="bg-black text-white btn-wide text-xs sm:text-md md:text-lg font-semibold hover:bg-gray-700"
+                                onClick={handleAddCart}
+                              >
+                                <p>Add to cart</p>
+                                {/*<p className="visible sm:invisible"><img src="/public/add-cart-light.png"/></p>*/}
                               </button>
                             )
                         }
@@ -117,11 +121,12 @@ export default function ProductDetailPage({isLogin}: Props) {
                         {/*<button className="btn-soft btn btn-info">testing</button>*/}
                       </div>
                       <div
-                          className="bg-gray-200 h-15 text-center flex px-7 gap-7 text-sm py-2 mb-15">
+                          className="bg-gray-200 h-15 text-center flex px-7 gap-7 text-sm py-2 mb-15 overflow-hidden">
                           <img
                               src="/public/van-dark.png"
                           />
                           <p className="self-center">Free standard delivery over $500</p>
+
                       </div>
                       <div className="text-sm">
                           <p className="mb-3 font-bold">Product Detail</p>

@@ -1,4 +1,5 @@
 export default function SearchBar() {
+
   return (
     <div className="flex justify-center p-3">
       <input
@@ -8,7 +9,7 @@ export default function SearchBar() {
       />
       <button className="bg-black w-13 border shrink-0">
         <img
-          src="../../../../../public/search-light.png"
+          src="/public/search-light.png"
           className="mx-auto w-6"
         />
       </button>

@@ -1,6 +1,7 @@
 import TopNav from "../../component/TopNav";
-import {useNavigate} from "@tanstack/react-router";
+import {Link, useNavigate} from "@tanstack/react-router";
 import "../../../App.css"
+import TopStatus from "../../component/TopNav/component/TopStatus.tsx";
 
 interface Props {
   isLogin: boolean
@@ -10,30 +11,24 @@ export default function ErrorPage({isLogin}: Props) {
   const navigate = useNavigate({from: "/"});
 
   return (
-    <>
-      <div className="h-screen">
-        <TopNav isLogin={isLogin}/>
-        <div className="flex-col justify-items-center">
-          <img
-            src="./../../../../public/404-page.jpg"
-          />
-          <button
-            className="btn btn-accent"
-            onClick={() => navigate({to: "/"})}
-          >
-            Go Back
-          </button>
-          {/*<div*/}
-          {/*  className="mask-radial-at-top-right mask-radial-from-gray-10% bg-[url('./../../../../public/404_error.jpg')] h-screen bg-cover bg-center bg-no-repeat"*/}
-          {/*>*/}
-          {/*</div>*/}
-          {/*<div className="bg-black opacity-45 z-10 w-screen h-screen absolute"></div>*/}
-
+    <div className="max-h-screen overflow-hidden">
+      <TopStatus isLogin={isLogin}/>
+      <div
+        className="hero min-h-screen bg-[url(/public/404_error.jpg)]"
+      >
+        <div className="hero-overlay"></div>
+        <div className="hero-content text-neutral-content text-center">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">404 Error</h1>
+            <p className="mb-5">
+              Sorry, this page is currently unavailable or unreachable. Please go back and try again.
+            </p>
+            <Link to={"/"}>
+              <button className="btn btn-error">Go Back</button>
+            </Link>
+          </div>
         </div>
-        {/*<img*/}
-        {/*  src="./../../../../public/404_error.jpg"*/}
-        {/*/>*/}
       </div>
-    </>
+    </div>
   )
 }
