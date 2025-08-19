@@ -10,10 +10,10 @@ interface Props {
 export default function ProductContainer({getAllProductDto, isLoading}: Props) {
   return (
     <div>
-      <div className="w-6xl mx-auto bg-white">
+      <div className="mx-auto bg-white xl:w-6xl lg:w-4xl md:w-2xl sm:w-xl">
         {/*ProductTableContainer*/}
         <div
-          className="grid grid-cols-4 bg-white gap-3.5 mt-3"
+          className="grid grid-cols-1 bg-white gap-3.5 mt-3 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 @xs:grid-col-1"
         >
           {
             isLoading && Array.from({length:10}).map(() => (

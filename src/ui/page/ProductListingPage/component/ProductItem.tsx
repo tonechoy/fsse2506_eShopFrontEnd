@@ -19,14 +19,17 @@ export default function ProductItem({itemDto, isLoading}: Props) {
 
       itemDto && !isLoading
     ? (
-    <div className="bg-white flex-1 rounded-lg p-6 hover:shadow-lg">
+    <div className="bg-white flex-1 rounded-lg p-6 hover:shadow-lg mx-auto">
         <div className="relative">
-      <Link to="/product/$productId" params={{productId: itemDto.pid.toString()}}>
+      <Link
+        to="/product/$productId" params={{productId: itemDto.pid.toString()}}
+        className="m-0 p-0"
+      >
 
         <img
           src={itemDto.imageUrl}
           alt={itemDto.name}
-          className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative"
+          className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative mx-auto"
         />
       </Link>
         <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">
@@ -35,17 +38,16 @@ export default function ProductItem({itemDto, isLoading}: Props) {
             width={30}
           />
         </span>
-          <span className="w-12 h-12 rounded-4xl bg-green-800 right-5 top-52 absolute">
+          <span className="w-12 h-12 rounded-4xl bg-green-800 right-5 top-52 absolute hover:bg-green-600">
           <img
             src="/public/add-cart-light.png"
-            // width={30}
             className="mx-auto p-2.5"
           />
         </span>
         </div>
       <div className="flex-col flex-1 mt-4 h-30">
         <div className="text-gray-400 text-sm font-extralight roboto-">{itemDto.category.toUpperCase()}</div>
-        <Link to="/product/$productId" params={{productId: itemDto.pid.toString()}}>
+        <Link to="/product/$productId" params={{productId: itemDto.pid.toString()}} className="m-0 p-0">
           <div className="h-13 line-clamp-2 hover:underline">{itemDto.name}</div>
         </Link>
         <div className="mt-2 italic font-bold">${itemDto.price.toLocaleString()}</div>

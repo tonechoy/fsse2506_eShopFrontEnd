@@ -6,7 +6,7 @@ export default function SearchBar() {
         placeholder="Search..."
         className="border w-150 px-3 h-13"
       />
-      <button className="bg-black w-13 border">
+      <button className="bg-black w-13 border shrink-0">
         <img
           src="../../../../../public/search-light.png"
           className="mx-auto w-6"

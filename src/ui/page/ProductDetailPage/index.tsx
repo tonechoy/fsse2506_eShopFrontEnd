@@ -4,6 +4,7 @@ import TopNav from "../../component/TopNav";
 import {useEffect, useState} from "react";
 import type {ProductDto} from "../../../data/product/product.type.ts";
 import {getProductByPid} from "../../../api/product/productApi.ts";
+import LoadingDetail from "../../component/LoadingDetail";
 
 interface Props {
   isLogin: boolean
@@ -56,18 +57,20 @@ export default function ProductDetailPage({isLogin}: Props) {
   return (
     <>
       <TopNav isLogin={isLogin}/>
-      {/*<h2>Pathname: {location.pathname}</h2>*/}
+      {
+        isLoading && <LoadingDetail/>
+      }
       {product && !isLoading &&
           <div className="flex-row bg-white w-full h-auto" key={product.pid}>
 
               <div className="flex w-6xl mx-auto gap-3">
-                  <div className="left-container flex-6 bg-orange-50">
+                  <div className="left-container flex-6">
                       <img
                           src={product.imageUrl}
                           className="mx-auto object-contain h-150"
                       />
                   </div>
-                  <div className="right-container flex-4 bg-blue-50 flex-col p-3">
+                  <div className="right-container flex-4 bg-blue-0 flex-col p-3">
                       <p className="text-gray-500 mb-3 capitalize">{product.category}</p>
                       <p className="text-2xl mb-8">{product.name}</p>
                       <p className="text-xl mb-20">${product.price.toLocaleString()}</p>
