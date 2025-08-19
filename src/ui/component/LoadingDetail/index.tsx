@@ -10,8 +10,18 @@ export default function LoadingDetail() {
           <div className="skeleton h-10 bg-gray-100 mb-7 w-30"></div>
           <div className="skeleton h-10 bg-gray-100 mb-7 w-50"></div>
         </div>
-
       </div>
+      {/*<div*/}
+      {/*  className="hero min-h-screen"*/}
+      {/*  // style={{backgroundColor:"black", opacity:"30%"}}*/}
+      {/*>*/}
+      {/*  <div className="hero-overlay"></div>*/}
+      {/*  <div className="hero-content text-neutral-content text-center">*/}
+      {/*    <div className="max-w-md">*/}
+      {/*      <progress className="progress w-56"></progress>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </>
   )
 }
