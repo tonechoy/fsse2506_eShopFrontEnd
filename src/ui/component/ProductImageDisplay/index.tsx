@@ -7,8 +7,8 @@ export default function ProductImageDisplay() {
   const imageSrcString = "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp,https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp,https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp,https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp,https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
 
   const imageSrc:string[] = imageSrcString.split(",");
-  const image1 = imageSrcString.split(",")[0];
-  console.log("image1: ", image1);
+  // const image1 = imageSrcString.split(",")[0];
+  // console.log("image1: ", image1);
 
   return (
     <>

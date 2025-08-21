@@ -11,7 +11,7 @@ export default function TopStatus({isLogin}: Props) {
       <Link to={"/"}>
         <button className="self-center hover:cursor-pointer">Logo</button>
       </Link>
-      <h1 className="text-2xl self-center">Title</h1>
+      <h1 className="text-2xl self-center font-serif">ComfortCraft</h1>
 
       {
         !isLogin

@@ -20,7 +20,6 @@ export default function ProductContainer({getAllProductDto, isLoading}: Props) {
               <LoadingItem/>
             ))
           }
-
           {
             getAllProductDto &&
             getAllProductDto.map((item) => (
