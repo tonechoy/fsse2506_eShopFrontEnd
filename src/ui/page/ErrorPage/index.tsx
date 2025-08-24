@@ -1,18 +1,18 @@
-import TopNav from "../../component/TopNav";
-import {Link, useNavigate} from "@tanstack/react-router";
+// import TopNav from "../../component/TopNav";
+import {Link} from "@tanstack/react-router";
 import "../../../App.css"
 import TopStatus from "../../component/TopNav/component/TopStatus.tsx";
 
-interface Props {
-  isLogin: boolean
-}
+// interface Props {
+//   isLogin: boolean
+// }
 
-export default function ErrorPage({isLogin}: Props) {
-  const navigate = useNavigate({from: "/"});
+export default function ErrorPage() {
+  // const navigate = useNavigate({from: "/"});
 
   return (
     <div className="max-h-screen overflow-hidden">
-      <TopStatus isLogin={isLogin}/>
+      <TopStatus/>
       <div
         className="hero min-h-screen bg-[url(/public/404_error.jpg)]"
       >

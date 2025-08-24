@@ -12,13 +12,13 @@ export default function ProductListingPage() {
   const [getAllProductDto, setGetAllProductDto] = useState<GetAllProductDto[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate({from: "/"});
 
   const fetchAllProductDto = async () => {
     const response = await getAllProduct();
     setIsLoading(false);
-    setIsLogin(false);
+    // setIsLogin(false);
     setGetAllProductDto(response);
     // console.log("mockData: ", mockData)
   }
@@ -29,14 +29,17 @@ export default function ProductListingPage() {
     } catch (e) {
       console.error(e);
       setIsError(true);
-      navigate({to: "/error"});
+      // navigate({to: "/error"});
       throw e;
     }
   }, []);
 
+  if (isError) {
+    navigate({to: "/error"})
+  }
   return (
     <div className="">
-      <TopNav isLogin={isLogin}/>
+      <TopNav/>
       {/*<CategorySelector/>*/}
       {/*<TitleCarousel/>*/}
       {/*{*/}

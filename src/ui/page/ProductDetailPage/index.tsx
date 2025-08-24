@@ -7,11 +7,10 @@ import {getProductByPid} from "../../../api/product/productApi.ts";
 import LoadingDetail from "../../component/LoadingDetail";
 import ProductImageDisplay from "../../component/ProductImageDisplay";
 
-interface Props {
-  isLogin: boolean
-}
+// interface Props {
+// }
 
-export default function ProductDetailPage({isLogin}: Props) {
+export default function ProductDetailPage() {
   const {productId} = useParams({from: "/product/$productId"});
   // const location = useLocation();
   const [product, setProduct] = useState<ProductDto | undefined>(undefined);
@@ -57,7 +56,7 @@ export default function ProductDetailPage({isLogin}: Props) {
 
   return (
     <>
-      <TopNav isLogin={isLogin}/>
+      <TopNav/>
       {
         isLoading && <LoadingDetail/>
       }
@@ -66,11 +65,11 @@ export default function ProductDetailPage({isLogin}: Props) {
 
               <div className="flex w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
                   <div className="left-container flex-6">
-                      <img
-                          src={product.imageUrl}
-                          className="mx-auto object-contain h-150"
-                      />
-                      {/*<ProductImageDisplay/>*/}
+                      {/*<img*/}
+                      {/*    src={product.imageUrl}*/}
+                      {/*    className="mx-auto object-contain h-150"*/}
+                      {/*/>*/}
+                      <ProductImageDisplay imageUrl={product.imageUrl}/>
                   </div>
                   <div className="right-container flex-4 bg-blue-50 flex-col p-3">
                       <p className="text-gray-500 mb-3 capitalize">{product.category}</p>

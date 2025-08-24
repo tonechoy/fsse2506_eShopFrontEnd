@@ -1,14 +1,22 @@
-export default function ProductImageDisplay() {
+import {useState} from "react";
+
+interface Props {
+  imageUrl: string
+}
+
+export default function ProductImageDisplay({imageUrl}: Props) {
   // const src1 = "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp";
   // const src2 = "https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp";
   // const src3 = "https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp";
   // const src4 = "https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp";
 
-  const imageSrcString = "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp,https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp,https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp,https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp,https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+  // const imageSrcString = "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp,https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp,https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp,https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp,https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
 
-  const imageSrc:string[] = imageSrcString.split(",");
+  const imageSrc:string[] = imageUrl.split(",");
   // const image1 = imageSrcString.split(",")[0];
   // console.log("image1: ", image1);
+
+  const [displayImage, setDisplayImage] = useState(imageSrc[0]);
 
   return (
     <>
@@ -41,25 +49,50 @@ export default function ProductImageDisplay() {
       {/*  <a href="#item4"><img src={src4} className="h-20 object-cover"/></a>*/}
       {/*</div>*/}
 
-      <div className="carousel w-full">
-      {
-         imageSrc.map((image, index) => (
-           <div id={("item"+(index+1)).toString()} className="carousel-item w-full" key={index}>
-             <img
-               src={image}
-               className="w-full h-120 object-cover"/>
-           </div>
-         ))
-      }
-      </div>
-      <div className="flex justify-start h-20 gap-2 mt-5">
-        {
-          imageSrc.map((image, index) => (
-            <a href={"#item"+(index+1).toString()} key={index}>
-              <img src={image} className="h-20 w-20 object-cover rounded"/>
-            </a>
-          ))
-        }
+      {/*<div className="carousel w-full">*/}
+      {/*{*/}
+      {/*   imageSrc.map((image, index) => (*/}
+      {/*     <div id={("item"+(index+1)).toString()} className="carousel-item w-full" key={index}>*/}
+      {/*       <img*/}
+      {/*         src={image}*/}
+      {/*         className="w-full h-120 object-cover"/>*/}
+      {/*     </div>*/}
+      {/*   ))*/}
+      {/*}*/}
+      {/*</div>*/}
+      {/*<div className="flex justify-start h-20 gap-2 mt-5">*/}
+      {/*  {*/}
+      {/*    imageSrc.map((image, index) => (*/}
+      {/*      <a href={"#item"+(index+1).toString()} key={index}>*/}
+      {/*        <img src={image} className="h-20 w-20 object-cover rounded"/>*/}
+      {/*      </a>*/}
+      {/*    ))*/}
+      {/*  }*/}
+      {/*</div>*/}
+
+      <div className="w-full">
+        <div className="flex-col">
+          <img
+            src={displayImage}
+            className="mx-auto object-contain h-150"
+          />
+          <div>
+            {
+              imageSrc.map((url, index) => (
+                <button
+                  key={index}
+                  className="w-20 h-20 mr-3 hover:cursor-pointer xl:mt-3"
+                  onClick={() => {setDisplayImage(url)}}
+                >
+                  <img
+                    src={url}
+                  />
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
       </div>
     </>
   )

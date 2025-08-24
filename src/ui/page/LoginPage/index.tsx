@@ -1,18 +1,29 @@
 import TopNav from "../../component/TopNav";
-import {type FormEvent, useState} from "react";
+import {type FormEvent, useContext, useEffect, useState} from "react";
+import {signInWithEmailAndPassword, signInWithGoogle} from "../../../authService/FirebaseAuthService.ts";
+import {useNavigate, useRouter} from "@tanstack/react-router";
+import {LoginUserContext} from "../../../context/LoginUserContext.tsx";
+import {GoogleLoginButton} from "react-social-login-buttons";
 
-interface Props {
-  isLogin: boolean
-}
+// interface Props {
+//   isLogin: boolean
+// }
 
-export default function LoginPage({isLogin}: Props) {
-  const [isPasswordHide, setIsPasswordHide] = useState(true)
+export default function LoginPage() {
+  const router = useRouter();
+
+  const loginUser = useContext(LoginUserContext);
+
+  const navigate = useNavigate({from: "/login"});
+
+  const [isPasswordHide, setIsPasswordHide] = useState(true);
+  const [isInvalidLogin, setIsInvalidLogin] = useState(false);
 
   function toggleShowBtn() {
     isPasswordHide ? setIsPasswordHide(false) : setIsPasswordHide(true);
   }
 
-  function handleLoginWithEmailPassword(event: FormEvent<HTMLFormElement>) {
+  const handleLoginWithEmailPassword = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const target = event.target as typeof event.target & {
       email: { value: string };
@@ -24,11 +35,25 @@ export default function LoginPage({isLogin}: Props) {
 
     console.log("email: ", email);
     console.log("password:", password);
+
+    const loginResult = await signInWithEmailAndPassword(email, password);
+
+    if (loginResult) {
+      router.history.back();
+    } else {
+      setIsInvalidLogin(true);
+    }
   }
+
+  useEffect(() => {
+    if (loginUser) {
+      navigate({to: "/"});
+    }
+  }, [loginUser]);
 
   return (
     <>
-      <TopNav isLogin={isLogin}/>
+      <TopNav/>
       <div className="flex-col mx-auto w-md lg:w-6xl">
         <div className="container flex mt-10 justify-center align-middle">
           <div className="left flex-1 hidden lg:block">
@@ -58,18 +83,20 @@ export default function LoginPage({isLogin}: Props) {
               <button
                 type="button"
                 id="showBtn"
-                className="absolute right-4 bottom-15.5 hover:cursor-pointer"
+                className="absolute right-4 bottom-19 hover:cursor-pointer"
                 onClick={toggleShowBtn}>
                 {isPasswordHide ? "Show" : "Hide"}
               </button>
             <button
               type="submit"
-              className="w-full p-3 bg-black text-white hover:bg-gray-800"
+              className="w-full p-3 mt-4 bg-black text-white hover:bg-gray-800"
             >
               Sign in
             </button>
             </form>
-            <p className="-mt-7 text-error text-sm invisible">Invalid username & password!</p>
+            <p id="loginMsg" className={`${isInvalidLogin ? "block" : "invisible"} -mt-7 text-error text-sm`}>Invalid username & password!</p>
+            <hr className="-mt-4 mb-9"/>
+            <GoogleLoginButton onClick={signInWithGoogle}/>
           </div>
         </div>
       </div>

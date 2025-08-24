@@ -2,15 +2,12 @@
 import TopStatus from "./component/TopStatus.tsx";
 import SearchBar from "./component/SearchBar.tsx";
 import {Link} from "@tanstack/react-router";
+import "./../../../App.css"
 
-interface Props {
-  isLogin: boolean;
-}
-
-export default function TopNav({isLogin}: Props) {
+export default function TopNav() {
   return (
     <>
-      <TopStatus isLogin={isLogin}/>
+      <TopStatus/>
       {/*<div className="flex h-22 justify-center gap-13 px-6 items-center">*/}
       {/*  <Link to={("/")}*/}
       {/*    className="p-0 m-0"*/}

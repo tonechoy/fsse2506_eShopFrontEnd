@@ -26,14 +26,14 @@ export default function ProductItem({itemDto, isLoading}: Props) {
           <div className="bg-white flex rounded-lg p-6 hover:shadow-lg justify-center sm:flex-col gap-4">
             <div className="relative flex flex-1 w-full justify-center">
               <img
-                src={itemDto.imageUrl}
+                src={itemDto.imageUrl.split(",")[0]}
                 alt={itemDto.name}
                 className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative mx-auto"
               />
 
               <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">
               <img
-                src="/public/favourite-dark.png"
+                src="/favourite-dark.png"
                 width={30}
                 className="hover:scale-110"
               />
@@ -41,7 +41,7 @@ export default function ProductItem({itemDto, isLoading}: Props) {
               <span
                 className="w-12 h-12 rounded-4xl bg-green-800 right-5 invisible sm:visible top-52 absolute  hover:bg-green-600">
               <img
-                src="/public/add-cart-light.png"
+                src="/add-cart-light.png"
                 className="mx-auto p-2.5"
               />
             </span>
