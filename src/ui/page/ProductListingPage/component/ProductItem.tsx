@@ -15,6 +15,14 @@ export default function ProductItem({itemDto, isLoading}: Props) {
   //   return <LoadingItem/>
   // }
 
+  // const handleAddCartBtn = async () => {
+  //   await
+  // }
+  if (isLoading) {
+    return (
+      <LoadingItem/>
+    )
+  }
   return (
 
     itemDto && !isLoading
@@ -48,14 +56,15 @@ export default function ProductItem({itemDto, isLoading}: Props) {
             </div>
             <div className="flex-col flex-1 mt-4 h-30 sm:flex-1">
               <div className="text-gray-400 text-sm font-extralight">{itemDto.category.toUpperCase()}</div>
-              {/*<Link to="/product/$productId" params={{productId: itemDto.pid.toString()}} className="m-0 p-0">*/}
-              <div className="h-13 line-clamp-2 hover:underline text-lg sm:text-base">{itemDto.name}</div>
-              {/*</Link>*/}
+              <Link to="/product/$productId" params={{productId: itemDto.pid.toString()}} className="m-0 p-0">
+                <div className="h-13 line-clamp-2 hover:underline text-lg sm:text-base">{itemDto.name}</div>
+              </Link>
               <div className="mt-2 italic font-bold">${itemDto.price.toLocaleString()}</div>
               <div className="flex justify-end mt-3 mr-5">
                 <button
-                  className="bg-green-800 text-white font-bold p-2 px-5 rounded-md wrap-normal text-sm sm:hidden hover:bg-green-600">Add
-                  Cart
+                  className="bg-green-800 text-white font-bold p-2 px-5 rounded-md wrap-normal text-sm sm:hidden hover:bg-green-600"
+                >
+                  Add Cart
                 </button>
                 {/*<button className="bg-red-800 text-white wrap-normal p-1 px-3 rounded-2xl text-sm sm:hidden hover:bg-red-600">+*/}
                 {/*  Favorite*/}
@@ -64,7 +73,6 @@ export default function ProductItem({itemDto, isLoading}: Props) {
             </div>
           </div>
         </Link>
-
       ) :
       <LoadingItem/>
 

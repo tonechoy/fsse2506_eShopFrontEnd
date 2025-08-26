@@ -4,13 +4,19 @@ import UserUI from "./UserUI.tsx";
 export default function TopStatus() {
 
   return (
-    <div className="flex justify-between px-10 bg-green-950 text-white align-middle h-10 items-center">
-      <button className="flex-1 text-start hover:cursor-pointer">
-        <Link to={"/"}>
-          Logo
-        </Link>
-      </button>
-      <h1 className="text-2xl self-center font-serif flex-1 text-center">ComfortCraft</h1>
+    <div className="flex justify-between px-10 bg-[#122620] text-white align-middle h-20 items-center">
+      <div className="flex-1 flex">
+        <button className="text-start hover:cursor-pointer bg-black">
+          <Link to={"/"}>
+            <img
+              src="/public/ComfortCraft-banner.png"
+              width="150"
+            />
+          </Link>
+        </button>
+          <p className="text-2xl self-center font-serif">ComfortCraft</p>
+      </div>
+      {/*<h1 className="text-2xl self-center font-serif flex-1 text-center">ComfortCraft</h1>*/}
       <UserUI/>
 
       {/*<button*/}

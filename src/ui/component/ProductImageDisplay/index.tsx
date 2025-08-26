@@ -74,7 +74,7 @@ export default function ProductImageDisplay({imageUrl}: Props) {
         <div className="flex-col">
           <img
             src={displayImage}
-            className="mx-auto object-contain h-150"
+            className="mx-auto object-contain max-h-130 min-h-70"
           />
           <div>
             {

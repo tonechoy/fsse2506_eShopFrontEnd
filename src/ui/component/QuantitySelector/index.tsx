@@ -1,41 +1,30 @@
 import {useState} from "react";
 
 interface Props {
-  handleQuantityChange: (event) => void
+  quantity: number;
+  handleQuantityChange: (event) => void;
 }
 
-export default function QuantitySelector({handleQuantityChange}: Props) {
-  // const [quantity, setQuantity] = useState(1);
-
-
-  // const handleAddCart = (event) => {
-  //   event.preventDefault();
-  //   console.log("Add bag:", quantity);
-  //   event.target.innerText = "Added"
-  //   event.target.style.backgroundColor = "darkGreen"
-  //   setTimeout(() => {
-  //     event.target.innerText = "Add to cart";
-  //     event.target.style.backgroundColor = "black";
-  //   }, 4000);
-  // }
-
+export default function QuantitySelector({
+                                           quantity,
+                                           handleQuantityChange
+                                         }: Props) {
   return (
-    <div className="dropdown" onClick={handleQuantityChange}>
-      {/*<legend>Quantity</legend>*/}
+    <div className="dropdown" onChange={handleQuantityChange}>
       <select
-        className="select w-30 self-center border h-13 border-info-content rounded-none"
+        className="select w-20 self-center border h-13 border-info-content rounded-none"
+        value={quantity}
       >
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
       </select>
     </div>
   )

@@ -2,30 +2,71 @@ import QuantitySelector from "../../../component/QuantitySelector";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
-import {Link} from "@tanstack/react-router";
+import {Link, useNavigate} from "@tanstack/react-router";
+import {deleteCartItem, patchCartItem} from "../../../../api/cartItem/cartItemApi.ts";
+import {type ChangeEvent, useState} from "react";
 
 interface Props {
-  dto: CartItemDto
+  dto: CartItemDto;
+  handleSelectorQuantityChange: (pid: number, quantity: number) => void;
+  handleDelete: (pid: number) => void;
 }
 
-export default function CartTableRow({dto}: Props) {
+export default function CartTableRow({dto, handleSelectorQuantityChange, handleDelete}: Props) {
+
+  const navigate = useNavigate({from: "/shoppingcart"})
+
+  const [isLoading, setIsLoading] = useState(false);
+  // const [quantity, setQuantity] = useState(dto.cartQuantity);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const handleQuantitySelector = async (event: ChangeEvent<HTMLSelectElement>) => {
+    // event.preventDefault();
+    // setQuantity(parseInt(event.target.value));
+    console.log("Quantity change from: ", event.target.value);
+    // if (dto.cartQuantity > 1) {
+    setIsLoading(true);
+      handleSelectorQuantityChange(dto.pid, parseInt(event.target.value));
+      await patchCartItem(dto.pid, parseInt(event.target.value));
+      // setQuantity(dto.cartQuantity);
+    //   console.log("quantity: ",quantity);
+      // console.log("Quantity change to: ", dto.cartQuantity);
+      console.log("dto: ", dto);
+      setIsLoading(false);
+      // console.log("finish loading");
+    // }
+  }
+
+  const handleDeleteBtn = async () => {
+    try {
+      setIsLoading(true);
+      await deleteCartItem(dto.pid);
+      handleDelete(dto.pid)
+      setIsLoading(false);
+    } catch {
+      navigate({to: "/error"});
+    }
+  }
+  // if (isLoading) {
+  //   return (
+  //     <LoadingBackdrop/>
+  //     <progress className="progress loading-spinner"></progress>
+  //   )
+  // }
+
   return (
     <>
-      {/*<tr>*/}
-      {/*  <td>CELLPHONE</td>*/}
-      {/*  <td>Xiaomi 小米 紅米 Redmi 14C (8+256GB)</td>*/}
-      {/*</tr>*/}
       <hr className="text-gray-300 mt-5 mb-10"/>
-      <div className="flex justify-between">
-        <div className="h-40 w-30 object-contain mr-5">
-          <Link to={`/product/${dto.pid}`}>
+      <div className="flex ">
+        <div className="flex h-40 w-30 object-contain mr-5">
+          <Link to={`/product/${(dto.pid)}`}>
             <img
               src={dto.imgageUrl.split(",")[0]}
               className="object-contain"
             />
           </Link>
         </div>
-        <div className="leading-relaxed w-60 mr-5">
+        <div className="flex-4 leading-relaxed mr-5">
           <div>
             <p className="uppercase text-xs mb-1.5">{dto.category}</p>
             <Link to={`/product/${dto.pid}`}>
@@ -34,19 +75,28 @@ export default function CartTableRow({dto}: Props) {
 
           </div>
           <div className="mt-10">
-            HKD ${dto.price.toLocaleString()}
+            HKD ${dto.price.toFixed(2).toLocaleString()} each
           </div>
         </div>
-        <div className="flex flex-col space-y-6 items-center mx-auto">
+        <div className="flex flex-2 flex-col space-y-6 items-center">
           <div>
-            <QuantitySelector/>
+            <QuantitySelector quantity={dto.cartQuantity} handleQuantityChange={handleQuantitySelector}/>
           </div>
-          <button className="btn bg-black rounded-none w-15">
+          <button className="btn bg-black rounded-none w-15" onClick={handleDeleteBtn}>
             <FontAwesomeIcon icon={faTrash} style={{color: "#ffffff",}}/>
           </button>
         </div>
-        <div>
-          ${(dto.price * dto.cartQuantity).toLocaleString()}
+        <div className="flex-1 flex justify-end">
+          {/*{*/}
+          {/*  !isLoading*/}
+          {/*  ? <>${(dto.price * dto.cartQuantity).toFixed(2).toLocaleString()}</>*/}
+          {/*    : <span className="loading loading-spinner"></span>*/}
+          {/*}*/}
+          <div>
+
+          ${(dto.price * dto.cartQuantity).toFixed(2).toLocaleString()}
+          </div>
+
         </div>
 
       </div>

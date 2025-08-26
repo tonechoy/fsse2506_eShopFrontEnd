@@ -1,7 +1,7 @@
 import "./../../../App.css"
 import {useNavigate, useParams} from "@tanstack/react-router";
 import TopNav from "../../component/TopNav";
-import {useContext, useEffect, useState} from "react";
+import {type ChangeEvent, useContext, useEffect, useState} from "react";
 import type {ProductDto} from "../../../data/product/product.type.ts";
 import {getProductByPid} from "../../../api/product/productApi.ts";
 import LoadingDetail from "../../component/LoadingDetail";
@@ -29,21 +29,10 @@ export default function ProductDetailPage() {
 
   const [isAddingtoCart, setIsAddingtoCart] = useState(false);
 
-  const handleQuantityChange = (event) => {
+  const handleQuantityChange = (event: ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
     console.log(event.target.value);
     setQuantity(parseInt(event.target.value));
-  }
-
-  const handleAddCart = (event) => {
-    event.preventDefault();
-    console.log("Add bag:", quantity);
-    event.target.innerText = "Added"
-    event.target.style.backgroundColor = "darkGreen"
-    setTimeout(() => {
-      event.target.innerText = "Add to cart";
-      event.target.style.backgroundColor = "black";
-    }, 4000);
   }
 
   const handlePutCartItem = async () => {
@@ -99,6 +88,17 @@ export default function ProductDetailPage() {
         )
       }
 
+      if (quantity > productDto.stock) {
+        return (
+          <button
+            className="btn-disabled bg-gray-300 text-gray-800 btn-wide text-lg font-semibold"
+          >
+            <p>Out of stock</p>
+            {/*<p className="visible sm:invisible"><img src="/public/add-cart-light.png"/></p>*/}
+          </button>
+        )
+      }
+
       return (
         <button
           className="bg-black text-white btn-wide text-xs sm:text-md md:text-lg font-semibold hover:bg-gray-700"
@@ -136,14 +136,10 @@ export default function ProductDetailPage() {
         isLoading && <LoadingDetail/>
       }
       {productDto && !isLoading &&
-          <div className="bg-orange-50 w-full h-auto mt-10" key={productDto.pid}>
+          <div className="bg-white w-full h-auto my-10" key={productDto.pid}>
 
               <div className="flex w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
                   <div className="left-container flex-6">
-                    {/*<img*/}
-                    {/*    src={productDto.imageUrl}*/}
-                    {/*    className="mx-auto object-contain h-150"*/}
-                    {/*/>*/}
                       <ProductImageDisplay imageUrl={productDto.imageUrl}/>
                   </div>
                   <div className="right-container flex-4 bg-blue-50 flex-col p-3">
@@ -152,42 +148,23 @@ export default function ProductDetailPage() {
                       <p className="text-xl mb-20">${productDto.price.toLocaleString()}</p>
                       <div className="flex w-full h-13 justify-evenly align-middle mb-15 gap-3">
                           <QuantitySelector handleQuantityChange={handleQuantityChange}/>
-                        {/*<div className="dropdown" onClick={handleQuantityChange}>*/}
-                        {/*  /!*<legend>Quantity</legend>*!/*/}
-                        {/*    <select*/}
-                        {/*        className="select w-30 self-center border h-13 border-info-content rounded-none"*/}
-                        {/*    >*/}
-                        {/*        <option>1</option>*/}
-                        {/*        <option>2</option>*/}
-                        {/*        <option>3</option>*/}
-                        {/*        <option>4</option>*/}
-                        {/*        <option>5</option>*/}
-                        {/*        <option>6</option>*/}
-                        {/*        <option>7</option>*/}
-                        {/*        <option>8</option>*/}
-                        {/*        <option>9</option>*/}
-                        {/*        <option>10</option>*/}
-
-                        {/*    </select>*/}
-                        {/*</div>*/}
                         {
                           renderAddToCartBtn()
                         }
 
                         {/*<span className="border rounded-4xl p-3 self-center">*/}
                         {/*  <img*/}
-                        {/*    src="../../../../public/love-dark.png"*/}
+                        {/*    src="/love-dark.png"*/}
                         {/*    className="object-contain hover:scale-110"*/}
                         {/*    width="28"*/}
 
                         {/*  />*/}
                         {/*</span>*/}
-                        {/*<button className="btn-soft btn btn-info">testing</button>*/}
                       </div>
                       <div
                           className="bg-gray-200 h-15 text-center flex px-7 gap-7 text-sm py-2 mb-15 overflow-hidden">
                           <img
-                              src="/public/van-dark.png"
+                              src="/van-dark.png"
                           />
                           <p className="self-center">Free standard delivery over $500</p>
 

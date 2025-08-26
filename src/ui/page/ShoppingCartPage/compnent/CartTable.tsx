@@ -1,12 +1,14 @@
-import QuantitySelector from "../../../component/QuantitySelector";
+// import QuantitySelector from "../../../component/QuantitySelector";
 import CartTableRow from "./CartTableRow.tsx";
 import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
 
 interface Props {
-  dtoList: CartItemDto[]
+  dtoList: CartItemDto[];
+  handleSelectorQuantityChange: (pid: number, quantity: number) => void;
+  handleDelete: (pid: number) => void;
 }
 
-export default function CartTable({dtoList}: Props) {
+export default function CartTable({dtoList, handleSelectorQuantityChange, handleDelete}: Props) {
   return (
     <div className="overflow-x-auto w-full">
       {/*<table className="table">*/}
@@ -44,7 +46,7 @@ export default function CartTable({dtoList}: Props) {
 
       {
         dtoList.map((dto) => (
-          <CartTableRow dto={dto}/>
+          <CartTableRow key={dto.pid} dto={dto} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete}/>
         ))
       }
     </div>
