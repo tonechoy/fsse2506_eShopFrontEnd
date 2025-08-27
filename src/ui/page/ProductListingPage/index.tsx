@@ -25,7 +25,7 @@ export default function ProductListingPage() {
     setIsLoading(false);
   }
 
-  const handleCategory = (category:string)=> {
+  const handleCategory = (category: string) => {
     try {
       // console.log("tab: ", tab);
       // setCategory(tab);
@@ -38,18 +38,23 @@ export default function ProductListingPage() {
       }
     } catch (e) {
       console.log(e);
-      navigate({to:"/error"})
+      navigate({to: "/error"})
     }
   }
 
   const fetchAllProductDto = async () => {
-    const responseData = await getAllProduct();
-    setIsLoading(false);
-    setGetAllProductDto(responseData);
-    setCategory("all");
+    try {
+      setIsLoading(true);
+      const responseData = await getAllProduct();
+      setIsLoading(false);
+      setGetAllProductDto(responseData);
+      setCategory("all");
+    } catch {
+      navigate({to: "/error"})
+    }
   }
 
-  const fetchProductDtoByCategory = async (category:string) => {
+  const fetchProductDtoByCategory = async (category: string) => {
     try {
       setIsLoading(true);
       // console.log(category);
@@ -58,16 +63,16 @@ export default function ProductListingPage() {
       setGetAllProductDto(responseData);
       setIsLoading(false);
     } catch {
-      navigate({to:"/error"});
+      navigate({to: "/error"});
     }
   }
 
   const fetchProductDtoByKeyword = async (word: string) => {
     try {
-    const responseData = await getProductByKeyword(word);
-    setGetAllProductDto(responseData);
+      const responseData = await getProductByKeyword(word);
+      setGetAllProductDto(responseData);
     } catch {
-      navigate({to:"/error"});
+      navigate({to: "/error"});
     }
   }
 
@@ -91,11 +96,11 @@ export default function ProductListingPage() {
       <CategoryTab category={category} handleCategory={handleCategory}/>
       {/*<CategorySelector/>*/}
       {/*<TitleCarousel/>*/}
-      {
-        getAllProductDto && !isError &&
+      {/*{*/}
+      {/*  getAllProductDto && !isError &&*/}
 
       <ProductContainer getAllProductDto={getAllProductDto} isLoading={isLoading}/>
-      }
+      {/*}*/}
 
     </div>
   )

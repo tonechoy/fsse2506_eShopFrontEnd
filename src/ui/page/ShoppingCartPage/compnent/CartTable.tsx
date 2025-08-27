@@ -10,7 +10,7 @@ interface Props {
 
 export default function CartTable({dtoList, handleSelectorQuantityChange, handleDelete}: Props) {
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="overflow-x-auto w-full h-full">
       {/*<table className="table">*/}
       {/*  <tbody>*/}
       {/*  /!* row 1 *!/*/}

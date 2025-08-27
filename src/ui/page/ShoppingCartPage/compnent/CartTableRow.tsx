@@ -5,6 +5,7 @@ import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
 import {Link, useNavigate} from "@tanstack/react-router";
 import {deleteCartItem, patchCartItem} from "../../../../api/cartItem/cartItemApi.ts";
 import {type ChangeEvent, useState} from "react";
+import LoadingDetail from "../../../component/LoadingDetail";
 
 interface Props {
   dto: CartItemDto;
@@ -45,7 +46,24 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
     return (
       // <LoadingBackdrop/>
       // <progress className="progress loading-spinner"></progress>
-      <div>Loading...</div>
+      // <div className="flex min-h-2">
+      // </div>
+        <div className="h-[7%] object-cover overflow-hidden">
+          <hr className="text-gray-300 mt-5 mb-10"/>
+          <div className="flex space-x-[5%]">
+            {/*<div className="flex w-[10%] object-contain mr-5">*/}
+              <div className="flex-1 skeleton w-[100%] min-h-[10%] max-h-[20%] bg-gray-100"></div>
+            {/*</div>*/}
+            <div className="flex-4">
+              <div className="skeleton h-10 bg-gray-100 mb-7 w-[30%]"></div>
+              <div className="skeleton h-10 bg-gray-100 mb-7"></div>
+              <div className="skeleton h-10 bg-gray-100 mb-20 w-[20%]"></div>
+              {/*<div className="skeleton h-10 bg-gray-100 mb-7 w-[70%]"></div>*/}
+              {/*<div className="skeleton h-10 bg-gray-100 mb-7 w-50"></div>*/}
+            </div>
+
+          </div>
+        </div>
     )
   }
 
@@ -54,7 +72,7 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
       <hr className="text-gray-300 mt-5 mb-10"/>
       <div className="flex ">
         <div className="flex h-40 w-30 object-contain mr-5">
-          <Link to={`/product/${(dto.pid)}`}>
+          <Link to={`/product/${dto.pid.toString()}`}>
             <img
               src={dto.imgageUrl.split(",")[0]}
               className="object-contain"
@@ -64,7 +82,7 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
         <div className="flex-4 leading-relaxed mr-5">
           <div>
             <p className="uppercase text-xs mb-1.5">{dto.category}</p>
-            <Link to={`/product/${dto.pid}`}>
+            <Link to={`/product/${dto.pid.toString()}`}>
               <p>{dto.name}</p>
             </Link>
 

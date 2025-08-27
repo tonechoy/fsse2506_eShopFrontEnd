@@ -81,16 +81,16 @@ export default function ProductImageDisplay({imageUrl}: Props) {
         <div className="flex lg:flex-col lg:mx-auto">
           <img
             src={displayImage}
-            className="mx-auto object-contain max-h-120 min-h-70 hover:cursor-zoom-in mb-3 hidden lg:block"
+            className="mx-auto object-contain h-120 hover:cursor-zoom-in mb-3 hidden lg:block"
             onClick={openImageModal}
           />
-          <div className="@xs:flex-col lg:flex mt-3">
+          <div className="@xs:flex-col lg:flex lg:mt-3">
             {
               imageSrc.map((url, index) => (
                 <div key={index}>
                   <button
                     // key={index}
-                    className="w-20 h-20 mr-3 hover:cursor-pointer"
+                    className="w-20 h-20 mr-3 p-2 mb-2 border border-gray-300 overflow-hidden hover:cursor-pointer hover:border-black"
                     onClick={() => {
                       setDisplayImage(url)
                     }}
@@ -116,7 +116,7 @@ export default function ProductImageDisplay({imageUrl}: Props) {
           </div>
           <img
             src={displayImage}
-            className="mx-auto object-contain max-h-130 min-h-70 hover:cursor-zoom-in border border-gray-200 lg:hidden"
+            className="mx-auto object-contain max-h-130 min-h-70 hover:cursor-zoom-in border-gray-200 lg:hidden"
             onClick={openImageModal}
           />
         </div>

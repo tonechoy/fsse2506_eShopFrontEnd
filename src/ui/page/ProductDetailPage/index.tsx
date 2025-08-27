@@ -138,15 +138,17 @@ export default function ProductDetailPage() {
       {productDto && !isLoading &&
           <div className="bg-white w-full h-auto my-10" key={productDto.pid}>
 
-              <div className="flex w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
+              <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
+                  <div className="uppercase italic text-gray-500 font-light lg:hidden">{productDto.category}</div>
+                  <div className="text-xl mb-6 lg:hidden">{productDto.name}</div>
                   <div className="left-container flex-6">
                       <ProductImageDisplay imageUrl={productDto.imageUrl}/>
                   </div>
                   <div className="right-container flex-4 bg-blue-50 flex-col p-3">
-                      <p className="text-gray-500 mb-3 capitalize">{productDto.category}</p>
-                      <p className="text-2xl mb-8">{productDto.name}</p>
-                      <p className="text-xl mb-20">${productDto.price.toLocaleString()}</p>
-                      <div className="flex w-full h-13 justify-evenly align-middle mb-15 gap-3">
+                      <p className="text-gray-600 mb-3 uppercase italic font-light hidden lg:block">{productDto.category}</p>
+                      <p className="text-2xl mb-8 hidden lg:block">{productDto.name}</p>
+                      <p className="text-xl mb-10 lg:mb-20">${productDto.price.toLocaleString()}</p>
+                      <div className="flex w-full mx-auto lg:h-13 lg:justify-evenly align-middle mb-5 lg:mb-15 gap-3">
                           <QuantitySelector handleQuantityChange={handleQuantityChange}/>
                         {
                           renderAddToCartBtn()
@@ -162,7 +164,7 @@ export default function ProductDetailPage() {
                         {/*</span>*/}
                       </div>
                       <div
-                          className="bg-gray-200 h-15 text-center flex px-7 gap-7 text-sm py-2 mb-15 overflow-hidden">
+                          className="bg-gray-200 lg:w-full w-[80%] h-15 text-center flex px-7 gap-7 text-sm py-2 mb-15 overflow-hidden">
                           <img
                               src="/van-dark.png"
                           />
@@ -171,7 +173,7 @@ export default function ProductDetailPage() {
                       </div>
                       <div className="text-sm white">
                           <p className="mb-3 font-bold">Product Detail</p>
-                          <p className="leading-relaxed">{productDto.description}</p>
+                          <p className="leading-relaxed whitespace-pre-line">{productDto.description}</p>
                       </div>
                   </div>
 
