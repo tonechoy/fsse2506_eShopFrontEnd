@@ -1,8 +1,8 @@
-import {useState} from "react";
+import {type ChangeEvent} from "react";
 
 interface Props {
-  quantity: number;
-  handleQuantityChange: (event) => void;
+  quantity?: number;
+  handleQuantityChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export default function QuantitySelector({
@@ -10,10 +10,12 @@ export default function QuantitySelector({
                                            handleQuantityChange
                                          }: Props) {
   return (
-    <div className="dropdown" onChange={handleQuantityChange}>
+    <div className="dropdown">
       <select
         className="select w-20 self-center border h-13 border-info-content rounded-none"
         value={quantity}
+        onChange={handleQuantityChange}
+        // onChange={(event) => {}}
       >
         <option value="1">1</option>
         <option value="2">2</option>

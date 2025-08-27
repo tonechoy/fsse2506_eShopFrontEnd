@@ -13,12 +13,16 @@ export async function getUserCart() {
 }
 
 export async function putCartItem(pid: number, quantity: number) {
-  const response = await axios.put(
-    `${baseUrl}/cart/items/${pid}/${quantity}`,
-    undefined,
-    await getAuthConfig()
-  )
-  return response.data;
+  try {
+    const response = await axios.put(
+      `${baseUrl}/cart/items/${pid}/${quantity}`,
+      undefined,
+      await getAuthConfig()
+    )
+    return response.data;
+  } catch (e) {
+    console.log("error in putCartItem")
+  }
 }
 
 export async function patchCartItem(pid: number, quantity: number) {

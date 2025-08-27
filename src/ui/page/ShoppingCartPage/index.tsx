@@ -4,11 +4,11 @@ import {useContext, useEffect, useState} from "react";
 import type {CartItemDto} from "../../../data/cartItem/cartItemDto.ts";
 import {LoginUserContext} from "../../../context/LoginUserContext.tsx";
 import {useNavigate} from "@tanstack/react-router";
-import {deleteCartItem, getUserCart} from "../../../api/cartItem/cartItemApi.ts";
-import LoadingDetail from "../../component/LoadingDetail";
+import {getUserCart} from "../../../api/cartItem/cartItemApi.ts";
+// import LoadingDetail from "../../component/LoadingDetail";
 import LoadingBackdrop from "../../component/LoadingBackdrop";
 
-export default function ShoppingCartPage() {
+export default function Index() {
 
   const loginUser = useContext(LoginUserContext);
 

@@ -1,18 +1,38 @@
-export default function SearchBar() {
+import {type FormEvent, useState} from "react";
+import {useNavigate} from "@tanstack/react-router";
+import {getProductByKeyword} from "../../../../api/product/productApi.ts";
+
+interface Props {
+  handleSearchBar: (keywordInput: string) => void;
+}
+
+export default function SearchBar({handleSearchBar}: Props) {
+
+  const [keyword, setKeyword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchBtn = (event:FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate({to:"/"})
+    handleSearchBar(keyword);
+  }
 
   return (
-    <div className="flex justify-center p-3">
+    <form className="flex justify-center p-3" onSubmit={handleSearchBtn}>
       <input
         type="text"
+        value={keyword}
+        onChange={(event) => {setKeyword(event.target.value)}}
+        // onChange={(event) => handleSearchBar(event.target.value)}
         placeholder="Search..."
-        className="border border-gray-400 w-150 px-3 h-12"
+        className="border border-gray-400 rounded-none w-150 px-3 h-12 focus:outline-none"
       />
-      <button className="bg-black w-12 h-12 border shrink-0">
+      <button type="submit" className="btn btn-neutral rounded-none shadow-none w-12 h-12 border shrink-0">
         <img
           src="/public/search-light.png"
           className="mx-auto w-6"
         />
       </button>
-    </div>
+    </form>
   )
 }

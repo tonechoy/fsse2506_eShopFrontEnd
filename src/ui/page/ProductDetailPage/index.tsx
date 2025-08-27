@@ -166,10 +166,10 @@ export default function ProductDetailPage() {
                           <img
                               src="/van-dark.png"
                           />
-                          <p className="self-center">Free standard delivery over $500</p>
+                          <p className="self-center">Free standard delivery</p>
 
                       </div>
-                      <div className="text-sm">
+                      <div className="text-sm white">
                           <p className="mb-3 font-bold">Product Detail</p>
                           <p className="leading-relaxed">{productDto.description}</p>
                       </div>

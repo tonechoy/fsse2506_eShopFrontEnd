@@ -12,11 +12,18 @@ export default function ProductImageDisplay({imageUrl}: Props) {
 
   // const imageSrcString = "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp,https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp,https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp,https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp,https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
 
-  const imageSrc:string[] = imageUrl.split(",");
+  const imageSrc: string[] = imageUrl.split(",");
   // const image1 = imageSrcString.split(",")[0];
   // console.log("image1: ", image1);
 
   const [displayImage, setDisplayImage] = useState(imageSrc[0]);
+
+  const openImageModal = () => {
+    const modal = document.getElementById("imageModal") as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
+  };
 
   return (
     <>
@@ -71,26 +78,47 @@ export default function ProductImageDisplay({imageUrl}: Props) {
       {/*</div>*/}
 
       <div className="w-full">
-        <div className="flex-col">
+        <div className="flex lg:flex-col lg:mx-auto">
           <img
             src={displayImage}
-            className="mx-auto object-contain max-h-130 min-h-70"
+            className="mx-auto object-contain max-h-120 min-h-70 hover:cursor-zoom-in mb-3 hidden lg:block"
+            onClick={openImageModal}
           />
-          <div>
+          <div className="@xs:flex-col lg:flex mt-3">
             {
               imageSrc.map((url, index) => (
-                <button
-                  key={index}
-                  className="w-20 h-20 mr-3 hover:cursor-pointer xl:mt-3"
-                  onClick={() => {setDisplayImage(url)}}
-                >
-                  <img
-                    src={url}
-                  />
-                </button>
+                <div key={index}>
+                  <button
+                    // key={index}
+                    className="w-20 h-20 mr-3 hover:cursor-pointer"
+                    onClick={() => {
+                      setDisplayImage(url)
+                    }}
+                  >
+                    <img
+                      src={url}
+                    />
+                  </button>
+                  <dialog id="imageModal" className="modal w-screen h-screen">
+                    <div className="modal-box rounded-none max-h-screen max-w-fit">
+                      <img
+                        src={displayImage}
+                        className="mx-auto min-w-[40vw] my-auto"
+                      />
+                    </div>
+                    <form method="dialog" className="modal-backdrop">
+                      <button>close</button>
+                    </form>
+                  </dialog>
+                </div>
               ))
             }
           </div>
+          <img
+            src={displayImage}
+            className="mx-auto object-contain max-h-130 min-h-70 hover:cursor-zoom-in border border-gray-200 lg:hidden"
+            onClick={openImageModal}
+          />
         </div>
 
       </div>

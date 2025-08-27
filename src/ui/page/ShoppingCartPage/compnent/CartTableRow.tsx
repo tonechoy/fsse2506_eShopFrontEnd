@@ -24,17 +24,11 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
     // event.preventDefault();
     // setQuantity(parseInt(event.target.value));
     console.log("Quantity change from: ", event.target.value);
-    // if (dto.cartQuantity > 1) {
     setIsLoading(true);
-      handleSelectorQuantityChange(dto.pid, parseInt(event.target.value));
-      await patchCartItem(dto.pid, parseInt(event.target.value));
-      // setQuantity(dto.cartQuantity);
-    //   console.log("quantity: ",quantity);
-      // console.log("Quantity change to: ", dto.cartQuantity);
-      console.log("dto: ", dto);
-      setIsLoading(false);
-      // console.log("finish loading");
-    // }
+    handleSelectorQuantityChange(dto.pid, parseInt(event.target.value));
+    await patchCartItem(dto.pid, parseInt(event.target.value));
+    // console.log("dto: ", dto);
+    setIsLoading(false);
   }
 
   const handleDeleteBtn = async () => {
@@ -47,12 +41,13 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
       navigate({to: "/error"});
     }
   }
-  // if (isLoading) {
-  //   return (
-  //     <LoadingBackdrop/>
-  //     <progress className="progress loading-spinner"></progress>
-  //   )
-  // }
+  if (isLoading) {
+    return (
+      // <LoadingBackdrop/>
+      // <progress className="progress loading-spinner"></progress>
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <>
@@ -94,7 +89,7 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
           {/*}*/}
           <div>
 
-          ${(dto.price * dto.cartQuantity).toFixed(2).toLocaleString()}
+            ${(dto.price * dto.cartQuantity).toFixed(2).toLocaleString()}
           </div>
 
         </div>

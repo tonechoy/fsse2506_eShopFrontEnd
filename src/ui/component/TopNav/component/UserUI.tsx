@@ -4,23 +4,26 @@ import {LoginUserContext} from "../../../../context/LoginUserContext.tsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {signOut} from "../../../../authService/FirebaseAuthService.ts";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function UserUI() {
   const navigate = useNavigate({from: "/"})
   const loginUser = useContext(LoginUserContext);
 
-  const openModal = () => {
-    const modal = document.getElementById("logoutModalMsg") as HTMLDialogElement;
-    if (modal) {
-      modal.showModal();
-    }
-  };
+  // const openModal = () => {
+  //   const modal = document.getElementById("logoutModalMsg") as HTMLDialogElement;
+  //   if (modal) {
+  //     modal.showModal();
+  //   }
+  // };
 
-
-  const handleLogoutBtn = () => {
-    signOut();
-    openModal();
+  const handleLogoutBtn = async () => {
+    await signOut();
+    // openModal();
+    notify();
   }
+
+  const notify =() => {toast.success("Logout Successful!")}
 
   if (loginUser) {
     return (
@@ -30,7 +33,6 @@ export default function UserUI() {
           <Link to={"/shoppingcart"}>
             <button className="btn btn-sm p-2"><FontAwesomeIcon icon={faCartShopping} style={{color: "#000000",}}/>
             </button>
-
           </Link>
           <button
             className="btn btn-sm p-1"
@@ -59,6 +61,11 @@ export default function UserUI() {
         >
           LOGIN
         </button>
+        {/*<span className="absolute z-10 bg-white text-black rounded-2xl border border-gray-500 w-40 h-6 right-25 top-12 text-wrap text-sm text-center ">*/}
+        {/*  Logout successful!*/}
+        {/*  */}
+        {/*</span>*/}
+        <Toaster/>
       </div>
     )
   } else {

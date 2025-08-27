@@ -95,7 +95,7 @@ export default function LoginPage() {
             </button>
             </form>
             <p id="loginMsg" className={`${isInvalidLogin ? "block" : "invisible"} -mt-7 text-error text-sm`}>Invalid username & password!</p>
-            <hr className="-mt-4 mb-9"/>
+            <hr className="-mt-4 mb-9 text-gray-300"/>
             <GoogleLoginButton onClick={signInWithGoogle}/>
           </div>
         </div>

@@ -1,10 +1,14 @@
 // import CategoryTab from "./component/CategoryTab.tsx";
 import TopStatus from "./component/TopStatus.tsx";
 import SearchBar from "./component/SearchBar.tsx";
-import {Link} from "@tanstack/react-router";
+// import {Link} from "@tanstack/react-router";
 import "./../../../App.css"
 
-export default function TopNav() {
+interface Props {
+  handleSearch: (keywordInput: string) => void;
+}
+
+export default function TopNav({handleSearch}: Props) {
   return (
     <>
       <TopStatus/>
@@ -14,10 +18,9 @@ export default function TopNav() {
       {/*  >*/}
       {/*    <img src="/public/ComfortCraft-banner-light.png" className="h-22"/>*/}
       {/*  </Link>*/}
-      {/*  <SearchBar/>*/}
+        <SearchBar handleSearchBar={handleSearch}/>
       {/*  <div className="bg-gray-200 w-50 h-10"></div>*/}
       {/*</div>*/}
-      {/*<CategoryTab/>*/}
     </>
   )
 }

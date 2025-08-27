@@ -28,13 +28,13 @@ export default function CartSummary({dtoList}: Props) {
             <p>Total</p>
             <p>$ {calTotal(dtoList).toFixed(2).toLocaleString()}</p>
           </div>
-          <p className="font-light text-sm -mt-5">(Excluding delivery)</p>
+          {/*<p className="font-light text-sm -mt-5">(Excluding delivery)</p>*/}
           <div
             className="bg-gray-200 h-15 text-center flex px-7 gap-7 text-sm py-2 mt-15 overflow-hidden">
             <img
               src="/van-dark.png"
             />
-            <p className="self-center">Free standard delivery over $500</p>
+            <p className="self-center">Free standard delivery</p>
           </div>
           <button className="btn btn-neutral text-white w-full rounded-none py-6 hover:bg-gray-600">
             <FontAwesomeIcon icon={faShieldHalved} />
