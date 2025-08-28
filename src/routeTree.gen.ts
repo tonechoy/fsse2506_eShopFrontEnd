@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ThankyouIndexRouteImport } from './routes/thankyou/index'
 import { Route as ShoppingcartIndexRouteImport } from './routes/shoppingcart/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as ErrorIndexRouteImport } from './routes/error/index'
@@ -19,6 +20,11 @@ import { Route as CheckoutTidRouteImport } from './routes/checkout/$tid'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankyouIndexRoute = ThankyouIndexRouteImport.update({
+  id: '/thankyou/',
+  path: '/thankyou/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShoppingcartIndexRoute = ShoppingcartIndexRouteImport.update({
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
+  '/thankyou': typeof ThankyouIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
+  '/thankyou': typeof ThankyouIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/error/': typeof ErrorIndexRoute
   '/login/': typeof LoginIndexRoute
   '/shoppingcart/': typeof ShoppingcartIndexRoute
+  '/thankyou/': typeof ThankyouIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/error'
     | '/login'
     | '/shoppingcart'
+    | '/thankyou'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/error'
     | '/login'
     | '/shoppingcart'
+    | '/thankyou'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/error/'
     | '/login/'
     | '/shoppingcart/'
+    | '/thankyou/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   ErrorIndexRoute: typeof ErrorIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   ShoppingcartIndexRoute: typeof ShoppingcartIndexRoute
+  ThankyouIndexRoute: typeof ThankyouIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thankyou/': {
+      id: '/thankyou/'
+      path: '/thankyou'
+      fullPath: '/thankyou'
+      preLoaderRoute: typeof ThankyouIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shoppingcart/': {
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   ErrorIndexRoute: ErrorIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   ShoppingcartIndexRoute: ShoppingcartIndexRoute,
+  ThankyouIndexRoute: ThankyouIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

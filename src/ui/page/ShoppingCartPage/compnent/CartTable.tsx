@@ -9,8 +9,15 @@ interface Props {
 }
 
 export default function CartTable({dtoList, handleSelectorQuantityChange, handleDelete}: Props) {
+
+  const calItems = (dtoList: CartItemDto[]) => {
+    return dtoList.reduce((previousValue, cartItemDto) => {
+      return previousValue + cartItemDto.cartQuantity
+    },0)
+  }
+
   return (
-    <div className="overflow-x-auto w-full h-full">
+    <div className="w-full h-full">
       {/*<table className="table">*/}
       {/*  <tbody>*/}
       {/*  /!* row 1 *!/*/}
@@ -43,12 +50,26 @@ export default function CartTable({dtoList, handleSelectorQuantityChange, handle
       {/*  </tr>*/}
       {/*  </tbody>*/}
       {/*</table>*/}
+      <div className="table  border-gray-300 rounded-none w-full">
+      <thead>
+      <tr>
+        {/*<th>*/}
+      <div className="bg-[#122620] text-white p-3 px-6">Total of {calItems(dtoList)} items</div>
+        {/*</th>*/}
+      </tr>
+      </thead>
+        <tbody>
+
+        <tr>
 
       {
         dtoList.map((dto) => (
           <CartTableRow key={dto.pid} dto={dto} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete}/>
         ))
       }
+        </tr>
+        </tbody>
     </div>
+      </div>
   )
 }

@@ -7,6 +7,7 @@ import {useNavigate} from "@tanstack/react-router";
 import {getUserCart} from "../../../api/cartItem/cartItemApi.ts";
 // import LoadingDetail from "../../component/LoadingDetail";
 import LoadingBackdrop from "../../component/LoadingBackdrop";
+import {postTransaction} from "../../../api/transaction/transactionApi.ts";
 
 export default function Index() {
 
@@ -16,7 +17,7 @@ export default function Index() {
 
   const [dtoList, setDtoList] = useState<CartItemDto[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const fetchUserCart = async () => {
     try {
@@ -54,6 +55,15 @@ export default function Index() {
     }
   }
 
+  const handleCheckout = async () => {
+    setIsCheckingOut(true);
+    const responseData = await postTransaction();
+    navigate({
+      to:`/checkout/$tid`,
+      params: {tid: responseData.tid.toString()}
+    })
+  }
+
   useEffect(() => {
     if (loginUser) {
     fetchUserCart();
@@ -69,7 +79,7 @@ export default function Index() {
       <TopNav/>
       {
         !isLoading && dtoList
-          ? <CartContainer dtoList={dtoList} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete}/>
+          ? <CartContainer dtoList={dtoList} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete} handleCheckout={handleCheckout}/>
           : <LoadingBackdrop/>
       }
     </>

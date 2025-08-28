@@ -3,10 +3,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
 
 interface Props {
-  dtoList: CartItemDto[]
+  dtoList: CartItemDto[];
+  handleCheckout: () => void;
 }
 
-export default function CartSummary({dtoList}: Props) {
+export default function CartSummary({dtoList, handleCheckout}: Props) {
   // const totalPrice = dtoList.map((dto) => {
   //   let total += dto.price * dto.cartQuantity;
   //   return total;
@@ -36,9 +37,9 @@ export default function CartSummary({dtoList}: Props) {
             />
             <p className="self-center">Free standard delivery</p>
           </div>
-          <button className="btn btn-neutral text-white w-full rounded-none py-6 hover:bg-gray-600">
-            <FontAwesomeIcon icon={faShieldHalved} />
-            Checkout securely
+          <button className="btn btn-neutral text-white w-full rounded-none py-6 hover:bg-gray-600 disabled:{isCheckingOut}" onClick={handleCheckout}>
+            {/*<FontAwesomeIcon icon={faShieldHalved} />*/}
+            Proceed to checkout
           </button>
         </div>
       </div>

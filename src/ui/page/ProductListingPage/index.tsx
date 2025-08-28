@@ -93,6 +93,13 @@ export default function ProductListingPage() {
   return (
     <div className="">
       <TopNav handleSearch={handleSearch}/>
+      {/*<div className="sticky left-0 top-0 z-20 w-screen h-15 backdrop-blur-lg bg-transparent bg-[90%]">*/}
+      {/*  <div className="text-black z-30 text-center">Testing</div>*/}
+      {/*</div>*/}
+      <img
+        src="/banner_opening_soon.png"
+        className="w-full h-90 object-cover mb-5"
+      />
       <CategoryTab category={category} handleCategory={handleCategory}/>
       {/*<CategorySelector/>*/}
       {/*<TitleCarousel/>*/}

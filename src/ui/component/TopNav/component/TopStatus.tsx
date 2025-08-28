@@ -4,7 +4,7 @@ import UserUI from "./UserUI.tsx";
 export default function TopStatus() {
 
   return (
-    <div className="flex justify-between px-10 bg-[#122620] text-white align-middle h-20 items-center">
+    <div className="flex justify-between px-10 bg-[#122620] text-white align-middle h-20 items-center sticky left-0 top-0 z-20">
       <div className="flex-1 flex">
         <button className="text-start hover:cursor-pointer bg-black">
           <Link to={"/"}>

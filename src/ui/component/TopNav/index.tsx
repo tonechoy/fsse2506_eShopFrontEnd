@@ -18,7 +18,7 @@ export default function TopNav({handleSearch}: Props) {
       {/*  >*/}
       {/*    <img src="/public/ComfortCraft-banner-light.png" className="h-22"/>*/}
       {/*  </Link>*/}
-        <SearchBar handleSearchBar={handleSearch}/>
+      {/*  <SearchBar handleSearchBar={handleSearch}/>*/}
       {/*  <div className="bg-gray-200 w-50 h-10"></div>*/}
       {/*</div>*/}
     </>

@@ -24,12 +24,11 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
   const handleQuantitySelector = async (event: ChangeEvent<HTMLSelectElement>) => {
     // event.preventDefault();
     // setQuantity(parseInt(event.target.value));
-    console.log("Quantity change from: ", event.target.value);
-    setIsLoading(true);
+    // console.log("Quantity change from: ", event.target.value);
+    // setIsLoading(true);
     handleSelectorQuantityChange(dto.pid, parseInt(event.target.value));
     await patchCartItem(dto.pid, parseInt(event.target.value));
-    // console.log("dto: ", dto);
-    setIsLoading(false);
+    // setIsLoading(false);
   }
 
   const handleDeleteBtn = async () => {
@@ -44,44 +43,36 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
   }
   if (isLoading) {
     return (
-      // <LoadingBackdrop/>
-      // <progress className="progress loading-spinner"></progress>
-      // <div className="flex min-h-2">
-      // </div>
-        <div className="h-[7%] object-cover overflow-hidden">
-          <hr className="text-gray-300 mt-5 mb-10"/>
-          <div className="flex space-x-[5%]">
-            {/*<div className="flex w-[10%] object-contain mr-5">*/}
-              <div className="flex-1 skeleton w-[100%] min-h-[10%] max-h-[20%] bg-gray-100"></div>
-            {/*</div>*/}
-            <div className="flex-4">
-              <div className="skeleton h-10 bg-gray-100 mb-7 w-[30%]"></div>
-              <div className="skeleton h-10 bg-gray-100 mb-7"></div>
-              <div className="skeleton h-10 bg-gray-100 mb-20 w-[20%]"></div>
-              {/*<div className="skeleton h-10 bg-gray-100 mb-7 w-[70%]"></div>*/}
-              {/*<div className="skeleton h-10 bg-gray-100 mb-7 w-50"></div>*/}
-            </div>
-
+      <div className="h-[15%] object-cover overflow-hidden">
+        <hr className="text-gray-300"/>
+        <div className="flex space-x-[5%] py-7">
+          <div className="flex-1 skeleton w-[100%] h-40 min-h-[10%] max-h-[100%] bg-gray-100"></div>
+          <div className="flex-4">
+            <div className="skeleton h-[20%] bg-gray-100 mb-[2%] w-[30%]"></div>
+            <div className="skeleton h-[20%] bg-gray-100 mb-[2%] w-[70%]"></div>
+            <div className="skeleton h-[20%] bg-gray-100 mb-[2%] w-[50%]"></div>
+            <div className="skeleton h-[20%] bg-gray-100 mb-[2%] w-[20%]"></div>
           </div>
         </div>
+      </div>
     )
   }
 
   return (
     <>
-      <hr className="text-gray-300 mt-5 mb-10"/>
-      <div className="flex ">
-        <div className="flex h-40 w-30 object-contain mr-5">
+      <hr className="text-gray-300"/>
+      <div className="flex py-7 mr-5">
+        <div className="flex h-40 w-30 mr-5 object-cover">
           <Link to={`/product/${dto.pid.toString()}`}>
             <img
               src={dto.imgageUrl.split(",")[0]}
-              className="object-contain"
+              className="object-cover"
             />
           </Link>
         </div>
-        <div className="flex-4 leading-relaxed mr-5">
+        <div className="flex-4 leading-relaxed mr-5 max-h-45">
           <div>
-            <p className="uppercase text-xs mb-1.5">{dto.category}</p>
+            <p className="uppercase text-xs mb-1.5 italic">{dto.category}</p>
             <Link to={`/product/${dto.pid.toString()}`}>
               <p>{dto.name}</p>
             </Link>
