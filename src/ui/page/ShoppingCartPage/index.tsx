@@ -73,6 +73,11 @@ export default function Index() {
     }
   }, [loginUser]);
 
+  if (isCheckingOut) {
+    return (
+      <LoadingBackdrop/>
+    )
+  }
 
   return (
     <>

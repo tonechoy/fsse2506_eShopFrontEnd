@@ -138,13 +138,13 @@ export default function ProductDetailPage() {
       {productDto && !isLoading &&
           <div className="bg-white w-full h-auto my-10" key={productDto.pid}>
 
-              <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 md:w-3xl xl:w-6xl">
+              <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 @xs:w-lg md:w-3xl xl:w-6xl">
                   <div className="uppercase italic text-gray-500 font-light lg:hidden">{productDto.category}</div>
                   <div className="text-xl mb-6 lg:hidden">{productDto.name}</div>
                   <div className="left-container flex-6">
                       <ProductImageDisplay imageUrl={productDto.imageUrl}/>
                   </div>
-                  <div className="right-container flex-4 bg-blue-50 flex-col p-3">
+                  <div className="right-container flex-4 flex-col p-3">
                       <p className="text-gray-600 mb-3 uppercase italic font-light hidden lg:block">{productDto.category}</p>
                       <p className="text-2xl mb-8 hidden lg:block">{productDto.name}</p>
                       <p className="text-xl mb-10 lg:mb-20">${productDto.price.toLocaleString()}</p>

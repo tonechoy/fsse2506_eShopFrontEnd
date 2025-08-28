@@ -5,7 +5,7 @@ import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
 import {Link, useNavigate} from "@tanstack/react-router";
 import {deleteCartItem, patchCartItem} from "../../../../api/cartItem/cartItemApi.ts";
 import {type ChangeEvent, useState} from "react";
-import LoadingDetail from "../../../component/LoadingDetail";
+// import LoadingDetail from "../../../component/LoadingDetail";
 
 interface Props {
   dto: CartItemDto;
@@ -63,7 +63,10 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
       <hr className="text-gray-300"/>
       <div className="flex py-7 mr-5">
         <div className="flex h-40 w-30 mr-5 object-cover">
-          <Link to={`/product/${dto.pid.toString()}`}>
+          <Link
+            to={`/product/$productId`}
+            params={{productId: dto.pid.toString()}}
+          >
             <img
               src={dto.imgageUrl.split(",")[0]}
               className="object-cover"
@@ -73,7 +76,10 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
         <div className="flex-4 leading-relaxed mr-5 max-h-45">
           <div>
             <p className="uppercase text-xs mb-1.5 italic">{dto.category}</p>
-            <Link to={`/product/${dto.pid.toString()}`}>
+            <Link
+              to={`/product/$productId`}
+              params={{productId: dto.pid.toString()}}
+            >
               <p>{dto.name}</p>
             </Link>
 

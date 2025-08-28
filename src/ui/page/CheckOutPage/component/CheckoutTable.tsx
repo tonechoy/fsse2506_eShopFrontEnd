@@ -1,4 +1,4 @@
-import type {Item, TransactionDto} from "../../../../data/transaction/transaction.type.ts";
+import type {TransactionDto} from "../../../../data/transaction/transaction.type.ts";
 import CheckoutTableRow from "./CheckoutTableRow.tsx";
 
 interface Props {
@@ -23,8 +23,6 @@ export default function CheckoutTable({transactionDto}: Props) {
     }
     return 0;
   }
-
-  // const totalItems = calItems(transactionDto);
 
   return (
     <>

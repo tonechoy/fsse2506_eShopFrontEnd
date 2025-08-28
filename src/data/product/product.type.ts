@@ -16,4 +16,3 @@ export interface ProductDto {
   price:       number;
   stock:       number;
 }
-

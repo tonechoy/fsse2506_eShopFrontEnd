@@ -1,6 +1,6 @@
 import "./../../../App.css"
 import {useEffect, useState} from "react";
-import type {GetAllProductDto, ProductDto} from "../../../data/product/product.type.ts";
+import type {GetAllProductDto} from "../../../data/product/product.type.ts";
 import ProductContainer from "./component/ProductContainer.tsx";
 import TopNav from "../../component/TopNav";
 // import TitleCarousel from "./component/TitleCarousel.tsx";
@@ -8,9 +8,12 @@ import TopNav from "../../component/TopNav";
 import {getAllProduct, getProductByCategory, getProductByKeyword} from "../../../api/product/productApi.ts";
 import {useNavigate} from "@tanstack/react-router";
 import CategoryTab from "../../component/CategoryTab";
+import SearchBar from "../../component/TopNav/component/SearchBar.tsx";
+// import LoadingBackdrop from "../../component/LoadingBackdrop";
+// import LoadingBackdrop from "../../component/LoadingBackdrop";
 
 export default function ProductListingPage() {
-  const [getAllProductDto, setGetAllProductDto] = useState<GetAllProductDto[] | ProductDto[] | undefined>(undefined);
+  const [getAllProductDto, setGetAllProductDto] = useState<GetAllProductDto[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [category, setCategory] = useState("all");
@@ -60,6 +63,10 @@ export default function ProductListingPage() {
       // console.log(category);
       setCategory(category);
       const responseData = await getProductByCategory(category);
+      // const transformedData: GetAllProductDto[] = responseData.map((product) => ({
+      //   ...product,
+      //   hasStock: {stock}
+      // }))
       setGetAllProductDto(responseData);
       setIsLoading(false);
     } catch {
@@ -90,24 +97,24 @@ export default function ProductListingPage() {
   if (isError) {
     navigate({to: "/error"})
   }
+
   return (
     <div className="">
-      <TopNav handleSearch={handleSearch}/>
+      <TopNav/>
       {/*<div className="sticky left-0 top-0 z-20 w-screen h-15 backdrop-blur-lg bg-transparent bg-[90%]">*/}
       {/*  <div className="text-black z-30 text-center">Testing</div>*/}
       {/*</div>*/}
       <img
-        src="/banner_opening_soon.png"
+        src="/photo-1718220216044-006f43e3a9b1.avif"
         className="w-full h-90 object-cover mb-5"
       />
+      <SearchBar handleSearchBar={handleSearch}/>
       <CategoryTab category={category} handleCategory={handleCategory}/>
-      {/*<CategorySelector/>*/}
       {/*<TitleCarousel/>*/}
-      {/*{*/}
-      {/*  getAllProductDto && !isError &&*/}
-
-      <ProductContainer getAllProductDto={getAllProductDto} isLoading={isLoading}/>
-      {/*}*/}
+      {
+        getAllProductDto && !isError &&
+        <ProductContainer getAllProductDto={getAllProductDto} isLoading={isLoading}/>
+      }
 
     </div>
   )

@@ -81,7 +81,7 @@ export default function ProductImageDisplay({imageUrl}: Props) {
         <div className="flex lg:flex-col lg:mx-auto">
           <img
             src={displayImage}
-            className="mx-auto object-contain h-120 hover:cursor-zoom-in mb-3 hidden lg:block"
+            className="mx-auto object-contain h-120 max-w-120 hover:cursor-zoom-in mb-3 hidden lg:block"
             onClick={openImageModal}
           />
           <div className="@xs:flex-col lg:flex lg:mt-3">

@@ -1,5 +1,4 @@
 import CheckoutTable from "./component/CheckoutTable.tsx";
-import mockData from "./response.json"
 import {useContext, useEffect, useState} from "react";
 import type {TransactionDto} from "../../../data/transaction/transaction.type.ts";
 import CheckoutSummary from "./component/CheckoutSummary.tsx";
@@ -8,7 +7,6 @@ import {useNavigate, useParams} from "@tanstack/react-router";
 import {
   finishTransaction,
   getTransaction,
-  postTransaction,
   processTransaction
 } from "../../../api/transaction/transactionApi.ts";
 import LoadingBackdrop from "../../component/LoadingBackdrop";
@@ -23,10 +21,6 @@ export default function CheckOutPage() {
   const [transactionDto, setTransactionDto] = useState<TransactionDto | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-
-  // const createTransaction = async() => {
-  //   const responseData = await postTransaction();
-  // }
 
   const fetchTransaction = async () => {
     const responseData = await getTransaction(tid);

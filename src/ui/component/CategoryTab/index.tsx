@@ -34,7 +34,7 @@ export default function CategoryTab({category, handleCategory}: Props) {
       {/*}*/}
 
       {
-        ["All", "Cellphone", "Tablet", "Laptop"].map((value)=>{
+        ["All", "Cellphone", "Tablet", "Laptop", "Chair", "Desk", "Keyboard", "Mouse"].map((value)=>{
          return value.toLowerCase() === category.toLowerCase()
           ? <a role="tab" className="tab tab-active" key={value}>{value}</a>
             : <a role="tab" className="tab" key={value} onClick={()=>{handleCategory(value.toLowerCase())}}>{value}</a>

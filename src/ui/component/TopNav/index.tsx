@@ -1,14 +1,14 @@
 // import CategoryTab from "./component/CategoryTab.tsx";
 import TopStatus from "./component/TopStatus.tsx";
-import SearchBar from "./component/SearchBar.tsx";
+// import SearchBar from "./component/SearchBar.tsx";
 // import {Link} from "@tanstack/react-router";
 import "./../../../App.css"
 
-interface Props {
-  handleSearch: (keywordInput: string) => void;
-}
+// interface Props {
+//   handleSearch: (keywordInput: string) => void;
+// }
 
-export default function TopNav({handleSearch}: Props) {
+export default function TopNav() {
   return (
     <>
       <TopStatus/>

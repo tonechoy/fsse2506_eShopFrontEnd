@@ -2,7 +2,7 @@ import type {GetAllProductDto} from "../../../../data/product/product.type.ts";
 import {Link, useNavigate} from "@tanstack/react-router";
 import LoadingItem from "../../../component/LoadingItem";
 import {putCartItem} from "../../../../api/cartItem/cartItemApi.ts";
-import LoadingBackdrop from "../../../component/LoadingBackdrop";
+// import LoadingBackdrop from "../../../component/LoadingBackdrop";
 import {useState} from "react";
 import toast, {Toaster} from "react-hot-toast";
 
@@ -54,7 +54,8 @@ export default function ProductItem({itemDto, isLoading}: Props) {
           <div className="bg-white flex rounded-lg p-6 hover:shadow-lg justify-center sm:flex-col gap-4">
             <div className="relative flex flex-1 w-full justify-center">
               <Link
-                to="/product/$productId" params={{productId: itemDto.pid.toString()}}
+                to="/product/$productId"
+                params={{productId: itemDto.pid.toString()}}
                 className="m-0 p-0"
               >
                 <img

@@ -1,6 +1,6 @@
 import {type FormEvent, useState} from "react";
 import {useNavigate} from "@tanstack/react-router";
-import {getProductByKeyword} from "../../../../api/product/productApi.ts";
+// import {getProductByKeyword} from "../../../../api/product/productApi.ts";
 
 interface Props {
   handleSearchBar: (keywordInput: string) => void;

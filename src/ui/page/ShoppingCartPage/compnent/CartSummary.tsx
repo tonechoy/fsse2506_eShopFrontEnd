@@ -1,5 +1,3 @@
-import {faShieldHalved} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import type {CartItemDto} from "../../../../data/cartItem/cartItemDto.ts";
 
 interface Props {
