@@ -65,13 +65,13 @@ export default function ProductItem({itemDto, isLoading}: Props) {
                 />
               </Link>
 
-              <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">
-              <img
-                src="/favourite-dark.png"
-                width={30}
-                className="hover:scale-110"
-              />
-            </span>
+            {/*  <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">*/}
+            {/*  <img*/}
+            {/*    src="/favourite-dark.png"*/}
+            {/*    width={30}*/}
+            {/*    className="hover:scale-110"*/}
+            {/*  />*/}
+            {/*</span>*/}
               <button
                 className="z-10 w-12 h-12 rounded-4xl bg-green-800 right-5 invisible sm:visible top-52 absolute  hover:bg-green-600 disabled:bg-gray-500"
                 disabled={!itemDto.hasStock}
