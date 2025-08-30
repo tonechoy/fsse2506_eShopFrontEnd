@@ -29,7 +29,7 @@ export default function SearchBar({handleSearchBar}: Props) {
       />
       <button type="submit" className="btn btn-neutral rounded-none shadow-none w-12 h-12 border shrink-0">
         <img
-          src="/public/search-light.png"
+          src="/search-light.png"
           className="mx-auto w-6"
         />
       </button>

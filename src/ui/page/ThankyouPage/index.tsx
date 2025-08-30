@@ -20,12 +20,12 @@ export default function ThankyouPage() {
   return (
     <>
       <TopNav/>
-      <div className="flex-col content-center items-center flex w-screen">
-        <div className="text-center mt-10 text-xl">Your order is placed successfully.<br/> Thank you very much</div>
+      <div className="flex-col content-center items-center flex w-screen text-gray-700">
+        <div className="text-center mt-10 text-xl ">Your order is placed successfully.<br/> Thank you very much</div>
         <img
           src="https://t4.ftcdn.net/jpg/03/29/44/25/360_F_329442520_bs9DE1vhchdtXtbsJXcwGQTpjZd5NzDo.jpg"
-          // width="1000px"
-          className="w-screen"
+          width="1000px"
+          // className="w-screen"
         />
         <div className="">You will be redirect back to home page in {countdown} seconds</div>
       </div>

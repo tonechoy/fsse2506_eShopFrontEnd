@@ -21,7 +21,7 @@ export default function CartContainer({dtoList, handleSelectorQuantityChange,han
 
   if (dtoList.length === 0) {
     return (
-      <div className="mx-auto my-15 text-center text-3xl">
+      <div className="mx-auto my-15 text-center text-3xl bg-white">
         Your cart is empty <br/>
         <button className="btn btn-neutral rounded-none shadow-none mt-7 hover:bg-gray-600" onClick={handleBackBtn}>Go Back</button>
       </div>
@@ -30,8 +30,8 @@ export default function CartContainer({dtoList, handleSelectorQuantityChange,han
 
     return (
       <>
-        <div className="flex w-6xl mx-auto my-10 gap-15">
-          <div className="flex-6 flex-col space-y-4">
+        <div className="flex w-6xl mx-auto my-10 gap-15 mb-10 h-full bg-white">
+          <div className="flex-6 flex-col space-y-4 bg-white">
             <div className="text-3xl mb-4">Your secure bag</div>
             <div>Items available to buy now</div>
             <CartTable dtoList={dtoList} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete}/>

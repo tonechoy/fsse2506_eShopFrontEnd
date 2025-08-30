@@ -14,7 +14,7 @@ export default function ErrorPage() {
     <div className="max-h-screen overflow-hidden">
       <TopStatus/>
       <div
-        className="hero min-h-screen bg-[url(/public/404_error.jpg)]"
+        className="hero min-h-screen bg-[url(/404_error.jpg)]"
       >
         <div className="hero-overlay"></div>
         <div className="hero-content text-neutral-content text-center">

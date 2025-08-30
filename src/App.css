@@ -19,3 +19,21 @@
 /*body {*/
 /*    margin: 0;*/
 /*}*/
+
+html {
+    margin: 0;
+    background-color: white;
+}
+
+:root {
+   color-scheme: light
+}
+
+body {
+    background: white;
+    margin: 0 0 0 0;
+}
+
+@media (prefers-color-scheme: light) {
+    color-scheme: light;
+}

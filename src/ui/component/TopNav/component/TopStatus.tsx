@@ -9,7 +9,7 @@ export default function TopStatus() {
         <button className="text-start hover:cursor-pointer bg-black">
           <Link to={"/"}>
             <img
-              src="/public/ComfortCraft-banner.png"
+              src="/ComfortCraft-banner.png"
               width="150"
             />
           </Link>

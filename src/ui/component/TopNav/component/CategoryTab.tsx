@@ -1,16 +1,17 @@
 import {useState} from "react";
+import * as React from "react";
 
 export default function CategoryTab() {
   const [category, setCategory] = useState("Cellphone");
 
-  const addStyle = (event) => {
-    event.target.style.backgroundColor = "black";
-    event.target.style.color = "white";
+  const addStyle = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.currentTarget.style.backgroundColor = "black";
+    event.currentTarget.style.color = "white";
   }
 
-  const handleCategory = (event) => {
+  const handleCategory = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // console.log(event.target.innerText);
-    setCategory(event.target.innerText);
+    setCategory(event.currentTarget.innerText);
     console.log("category: ", category);
     addStyle(event);
   }

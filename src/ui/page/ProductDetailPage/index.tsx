@@ -27,7 +27,7 @@ export default function ProductDetailPage() {
 
   const navigate = useNavigate({from: ("/product/$productId")});
 
-  const [isAddingtoCart, setIsAddingtoCart] = useState(false);
+  const [isAddingtoCart, setisAddingtoCart] = useState(false);
 
   const handleQuantityChange = (event: ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
@@ -40,9 +40,9 @@ export default function ProductDetailPage() {
       navigate({to: "/login"})
     } else try {
       if (productDto) {
-        setIsAddingtoCart(true);
+        setisAddingtoCart(true);
         await putCartItem(productDto.pid, quantity);
-        setIsAddingtoCart(false);
+        setisAddingtoCart(false);
         setIsSuccess(true);
         setTimeout(() => {
           setIsSuccess(false);
@@ -58,6 +58,7 @@ export default function ProductDetailPage() {
     const response = await getProductByPid(productId.toString());
     setProductDto(response);
     setIsLoading(false);
+    document.title = `${response.name} - Comfort Craft`;
     return response;
   }
 
@@ -121,6 +122,10 @@ export default function ProductDetailPage() {
   useEffect(() => {
     try {
       fetchProductByPid();
+      // if (productDto) {
+      //   console.log(productDto.name)
+      //   document.title = productDto.name;
+      // }
     } catch (e) {
       navigate({to: ("/error")});
       console.error(e);
@@ -130,24 +135,28 @@ export default function ProductDetailPage() {
 
 
   return (
-    <>
+    <div className="bg-white pb-1">
       <TopNav/>
       {
         isLoading && <LoadingDetail/>
       }
       {productDto && !isLoading &&
-          <div className="bg-white w-full h-auto my-10" key={productDto.pid}>
+          <div className="bg-white w-full h-full my-10" key={productDto.pid}>
 
               <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 @xs:w-lg md:w-3xl xl:w-6xl">
                   <div className="uppercase italic text-gray-500 font-light lg:hidden">{productDto.category}</div>
-                  <div className="text-xl mb-6 lg:hidden">{productDto.name}</div>
+                  <div className="text-xl mb-6 text-gray-700 lg:hidden">{productDto.name}</div>
                   <div className="left-container flex-6">
-                      <ProductImageDisplay imageUrl={productDto.imageUrl}/>
+                    {
+                      productDto.imageUrl.length === 0
+                        ? <img src="/no-image.png" className="h-120 mx-auto"/>
+                        : <ProductImageDisplay imageUrl={productDto.imageUrl}/>
+                    }
                   </div>
                   <div className="right-container flex-4 flex-col p-3">
                       <p className="text-gray-600 mb-3 uppercase italic font-light hidden lg:block">{productDto.category}</p>
-                      <p className="text-2xl mb-8 hidden lg:block">{productDto.name}</p>
-                      <p className="text-xl mb-10 lg:mb-20">${productDto.price.toLocaleString()}</p>
+                      <p className="text-2xl mb-8 text-gray-700 hidden lg:block">{productDto.name}</p>
+                      <p className="text-xl mb-10 text-gray-700 lg:mb-20">${productDto.price.toLocaleString()}</p>
                       <div className="flex w-full mx-auto lg:h-13 lg:justify-evenly align-middle mb-5 lg:mb-15 gap-3">
                           <QuantitySelector handleQuantityChange={handleQuantityChange}/>
                         {
@@ -168,19 +177,18 @@ export default function ProductDetailPage() {
                           <img
                               src="/van-dark.png"
                           />
-                          <p className="self-center">Free standard delivery</p>
+                          <p className="self-center text-gray-700">Free standard delivery</p>
 
                       </div>
                       <div className="text-sm white">
-                          <p className="mb-3 font-bold">Product Detail</p>
-                          <p className="leading-relaxed whitespace-pre-line">{productDto.description}</p>
+                          <p className="mb-3 font-bold text-gray-700">Product Detail</p>
+                          <p className="leading-relaxed whitespace-pre-line text-gray-700">{productDto.description}</p>
                       </div>
                   </div>
-
               </div>
           </div>
       }
 
-    </>
+    </div>
   )
 }

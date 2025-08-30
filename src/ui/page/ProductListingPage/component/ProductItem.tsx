@@ -21,14 +21,16 @@ export default function ProductItem({itemDto, isLoading}: Props) {
   const [isAdding, setIsAdding] = useState(false);
   const navigate = useNavigate();
 
-  const notifySuccess = () => {toast.success("Added")}
+  const notifySuccess = () => {
+    toast.success("Added")
+  }
   // const notifyFail = () => {toast.error("Add to cart failed")}
 
   const handleAddCartBtn = async () => {
     try {
       setIsAdding(true);
       await putCartItem(itemDto.pid, 1);
-      console.log("added");
+      // console.log("added");
       setIsAdding(false);
       notifySuccess();
     } catch (e) {
@@ -36,7 +38,7 @@ export default function ProductItem({itemDto, isLoading}: Props) {
       console.log("add item failed")
       // notifyFail();
       setIsAdding(false);
-      navigate({to:"/error"});
+      navigate({to: "/error"});
     }
   }
 
@@ -58,20 +60,32 @@ export default function ProductItem({itemDto, isLoading}: Props) {
                 params={{productId: itemDto.pid.toString()}}
                 className="m-0 p-0"
               >
-                <img
-                  src={itemDto.imageUrl.split(",")[0]}
-                  alt={itemDto.name}
-                  className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative mx-auto"
-                />
+                {
+                  itemDto.imageUrl.length === 0
+                    ? (
+                      <img
+                        src="/no-image.png"
+                        className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative mx-auto"
+                      />
+                    )
+                    : (
+
+                      <img
+                        src={itemDto.imageUrl.split(",")[0]}
+                        alt={itemDto.name}
+                        className="flex flex-2 h-60 object-contain hover:scale-107 duration-450 transition-transform relative mx-auto"
+                      />
+                    )
+                }
               </Link>
 
-            {/*  <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">*/}
-            {/*  <img*/}
-            {/*    src="/favourite-dark.png"*/}
-            {/*    width={30}*/}
-            {/*    className="hover:scale-110"*/}
-            {/*  />*/}
-            {/*</span>*/}
+              {/*  <span className="w-10 h-10 rounded-4xl left-2 top-4 absolute">*/}
+              {/*  <img*/}
+              {/*    src="/favourite-dark.png"*/}
+              {/*    width={30}*/}
+              {/*    className="hover:scale-110"*/}
+              {/*  />*/}
+              {/*</span>*/}
               <button
                 className="z-10 w-12 h-12 rounded-4xl bg-green-800 right-5 invisible sm:visible top-52 absolute  hover:bg-green-600 disabled:bg-gray-500"
                 disabled={!itemDto.hasStock}
@@ -88,18 +102,21 @@ export default function ProductItem({itemDto, isLoading}: Props) {
             <div className="flex-col flex-1 mt-4 h-30 sm:flex-1">
               <div className="text-gray-400 text-sm font-extralight">{itemDto.category.toUpperCase()}</div>
               <Link to="/product/$productId" params={{productId: itemDto.pid.toString()}} className="m-0 p-0">
-                <div className="h-13 line-clamp-2 hover:underline text-lg sm:text-base">{itemDto.name}</div>
+                <div
+                  className="h-13 line-clamp-2 text-gray-700 text-lg sm:text-base hover:text-green-800 hover:underline">{itemDto.name}</div>
               </Link>
               <div className="flex justify-between">
-                <div className="mt-2 italic font-bold">${itemDto.price.toLocaleString()}</div>
-                <div className="self-end italic text-sm bg-gray-300 p-2" hidden={itemDto.hasStock}>{!itemDto.hasStock ? "Out of stock" : ""}</div>
+                <div className="mt-2 italic font-bold text-gray-700">${itemDto.price.toLocaleString()}</div>
+                <div className="self-end italic text-sm text-gray-600 bg-gray-300 p-2"
+                     hidden={itemDto.hasStock}>{!itemDto.hasStock ? "Out of stock" : ""}</div>
               </div>
               <div className="flex justify-end mt-3 mr-5">
                 <button
                   className="bg-green-800 text-white font-bold p-2 px-5 rounded-md wrap-normal text-sm sm:hidden hover:bg-green-600"
                   onClick={handleAddCartBtn}
+                  disabled={isAdding}
                 >
-                  {isAdding ? "Add Cart" : "Adding..."}
+                  {isAdding ? "Adding" : "Add to cart"}
                 </button>
                 {/*<button className="bg-red-800 text-white wrap-normal p-1 px-3 rounded-2xl text-sm sm:hidden hover:bg-red-600">+*/}
                 {/*  Favorite*/}

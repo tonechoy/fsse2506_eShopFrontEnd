@@ -25,6 +25,7 @@ export default function Index() {
       const responseData = await getUserCart();
       setDtoList(responseData);
       setIsLoading(false);
+      document.title = "Shopping Cart - Comfort Craft"
     } catch {
       navigate({to:"/error"})
     }
@@ -80,13 +81,13 @@ export default function Index() {
   }
 
   return (
-    <>
+    <div className="bg-white text-gray-700 min-h-screen">
       <TopNav/>
       {
         !isLoading && dtoList
           ? <CartContainer dtoList={dtoList} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete} handleCheckout={handleCheckout}/>
           : <LoadingBackdrop/>
       }
-    </>
+    </div>
   )
 }

@@ -13,7 +13,7 @@ export default function CartTable({dtoList, handleSelectorQuantityChange, handle
   const calItems = (dtoList: CartItemDto[]) => {
     return dtoList.reduce((previousValue, cartItemDto) => {
       return previousValue + cartItemDto.cartQuantity
-    },0)
+    }, 0)
   }
 
   return (
@@ -50,26 +50,25 @@ export default function CartTable({dtoList, handleSelectorQuantityChange, handle
       {/*  </tr>*/}
       {/*  </tbody>*/}
       {/*</table>*/}
-      <div className="table  border-gray-300 rounded-none w-full">
-      <thead>
-      <tr>
-        {/*<th>*/}
-      <div className="bg-[#122620] text-white p-3 px-6">Total of {calItems(dtoList)} items</div>
-        {/*</th>*/}
-      </tr>
-      </thead>
+      <table className="table  border-gray-300 rounded-none w-full">
+        <thead>
+          <tr>
+            <th className="bg-[#122620] text-white p-3 px-6 w-full">Total of {calItems(dtoList)} items</th>
+          </tr>
+        </thead>
         <tbody>
 
-        <tr>
+        {/*<tr>*/}
 
-      {
-        dtoList.map((dto) => (
-          <CartTableRow key={dto.pid} dto={dto} handleSelectorQuantityChange={handleSelectorQuantityChange} handleDelete={handleDelete}/>
-        ))
-      }
-        </tr>
+        {
+          dtoList.map((dto) => (
+            <CartTableRow key={dto.pid} dto={dto} handleSelectorQuantityChange={handleSelectorQuantityChange}
+                          handleDelete={handleDelete}/>
+          ))
+        }
+        {/*</tr>*/}
         </tbody>
+      </table>
     </div>
-      </div>
   )
 }

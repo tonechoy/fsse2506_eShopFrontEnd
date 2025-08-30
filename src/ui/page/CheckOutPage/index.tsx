@@ -38,6 +38,7 @@ export default function CheckOutPage() {
   useEffect(() => {
     if (loginUser) {
     fetchTransaction();
+    document.title = "Checkout - Comfort Craft"
     }
   }, [loginUser]);
 
@@ -48,7 +49,7 @@ export default function CheckOutPage() {
   }
 
   return (
-    <>
+    <div className="bg-white text-gray-700 min-h-auto">
       <div className="w-md md:w-2xl lg:w-4xl xl:w-6xl mx-auto my-10">
         <div className="text-3xl mb-7 font-semibold">Checking Out</div>
         <div className="@xs:flex-col lg:flex gap-15">
@@ -68,6 +69,6 @@ export default function CheckOutPage() {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }

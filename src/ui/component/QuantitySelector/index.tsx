@@ -12,7 +12,7 @@ export default function QuantitySelector({
   return (
     <div className="dropdown">
       <select
-        className="select w-20 self-center border h-13 border-info-content rounded-none"
+        className="select w-20 self-center border h-13 border-info-content rounded-none bg-white text-gray-700"
         value={quantity}
         onChange={handleQuantityChange}
         // onChange={(event) => {}}

@@ -7,37 +7,15 @@ export default function CategoryTab({category, handleCategory}: Props) {
 
   return (
     <div
-      role="tablist" className="tabs tabs-border w-6xl mx-auto gap-2"
+      role="tablist" className="tabs tabs-border mx-auto gap-2 rounded-none text-gray-700 w-md xl:w-6xl lg:w-4xl md:w-2xl sm:w-xl"
     >
-      <hr/>
-      {/*{*/}
-      {/*  category === "all"*/}
-      {/*  ? <a role="tab" className="tab tab-active" onClick={(event) => {*/}
-      {/*    handleCategory(event.currentTarget.innerText.toLowerCase())*/}
-      {/*    }}>All</a>*/}
-      {/*    :<a role="tab" className="tab">All</a>*/}
-      {/*}*/}
-      {/*{*/}
-      {/*  category === "cellphone"*/}
-      {/*    ? <a role="tab" className="tab tab-active">Cellphone</a>*/}
-      {/*    :<a role="tab" className="tab">Cellphone</a>*/}
-      {/*}*/}
-      {/*{*/}
-      {/*  category === "tablet"*/}
-      {/*    ? <a role="tab" className="tab tab-active">Tablet</a>*/}
-      {/*    :<a role="tab" className="tab">Tablet</a>*/}
-      {/*}*/}
-      {/*{*/}
-      {/*  category === "laptop"*/}
-      {/*    ? <a role="tab" className="tab tab-active">Laptop</a>*/}
-      {/*    :<a role="tab" className="tab">Laptop</a>*/}
-      {/*}*/}
+      {/*<hr/>*/}
 
       {
         ["All", "Chair", "Desk", "Keyboard", "Mouse"].map((value)=>{
          return value.toLowerCase() === category.toLowerCase()
-          ? <a role="tab" className="tab tab-active" key={value}>{value}</a>
-            : <a role="tab" className="tab" key={value} onClick={()=>{handleCategory(value.toLowerCase())}}>{value}</a>
+          ? <a role="tab" className="tab-active text-green-800  rounded-none border-b-2 border-b-green-700 px-1 py-1 mr-2 font-bold hover:cursor-pointer" key={value}>{value}</a>
+            : <a role="tab" className="rounded-none px-1 py-1 mr-2 hover:cursor-pointer hover:border-b hover:border-gray-400" key={value} onClick={()=>{handleCategory(value.toLowerCase())}}>{value}</a>
         })
       }
 

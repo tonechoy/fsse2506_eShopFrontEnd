@@ -52,9 +52,9 @@ export default function LoginPage() {
   }, [loginUser]);
 
   return (
-    <>
+    <div className="bg-white w-screen h-svh">
       <TopNav/>
-      <div className="flex-col mx-auto w-md lg:w-6xl">
+      <div className="flex-col  mx-auto w-md lg:w-6xl">
         <div className="container flex mt-10 justify-center align-middle">
           <div className="left flex-1 hidden lg:block">
             <img
@@ -62,23 +62,23 @@ export default function LoginPage() {
             />
           </div>
           <div className="right flex-col flex-1 space-y-8 m-auto p-5">
-            <div className="text-xl font-bold">Sign in to your account</div>
+            <div className="text-xl font-bold text-gray-700">Sign in to your account</div>
             <form onSubmit={handleLoginWithEmailPassword} className="space-y-5 relative">
-              <label className="">Email address</label>
+              <label className="text-gray-700">Email address</label>
               <input
                 type="email"
                 id="email-input"
                 name="email"
                 placeholder="Enter email"
-                className="required w-full bg-white border p-3 rounded-none mt-2"
+                className="required w-full bg-white border border-gray-500 p-3 rounded-none mt-2 text-gray-700"
               />
-              <label className="">Password</label>
+              <label className="text-gray-700">Password</label>
               <input
                 type={isPasswordHide ? "password" : "text"}
                 id="password-input"
                 name="password"
                 placeholder="Enter password"
-                className="required w-full bg-white border p-3 rounded-none mt-2 relative"
+                className="required w-full bg-white border border-gray-500 p-3 rounded-none mt-2 relative text-gray-700"
               />
               <button
                 type="button"
@@ -100,6 +100,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

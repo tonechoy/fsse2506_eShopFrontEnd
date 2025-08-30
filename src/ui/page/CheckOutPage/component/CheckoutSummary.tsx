@@ -18,7 +18,7 @@ export default function CheckoutSummary({transactionDto, handleCheckout}: Props)
   return (
     <>
       <div className="flex-3">
-        <div className="flex-col border border-gray-400 p-10 space-y-7 h-110">
+        <div className="flex-col bg-gray-100 p-10 space-y-7 h-110">
           <div className="text-3xl">Cart Summary</div>
           <hr className="text-gray-300"/>
           <div className="flex justify-between">

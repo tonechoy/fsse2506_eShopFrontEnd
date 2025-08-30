@@ -86,6 +86,7 @@ export default function ProductListingPage() {
   useEffect(() => {
     try {
       fetchAllProductDto();
+      document.title = "Comfort Craft"
     } catch (e) {
       console.error(e);
       setIsError(true);
@@ -99,7 +100,7 @@ export default function ProductListingPage() {
   }
 
   return (
-    <div className="">
+    <div className="bg-white">
       <TopNav/>
       {/*<div className="sticky left-0 top-0 z-20 w-screen h-15 backdrop-blur-lg bg-transparent bg-[90%]">*/}
       {/*  <div className="text-black z-30 text-center">Testing</div>*/}
