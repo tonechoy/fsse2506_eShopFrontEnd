@@ -77,7 +77,7 @@ export default function ProductImageDisplay({imageUrl}: Props) {
       {/*  }*/}
       {/*</div>*/}
 
-      <div className="w-full">
+      <div className="w-2xl lg:w-full">
         <div className="flex lg:flex-col lg:mx-auto">
           <img
             src={displayImage}
@@ -116,7 +116,7 @@ export default function ProductImageDisplay({imageUrl}: Props) {
           </div>
           <img
             src={displayImage}
-            className="mx-auto object-contain max-h-130 min-h-70 hover:cursor-zoom-in border-gray-200 lg:hidden"
+            className="mx-auto object-contain max-h-130 lg:min-h-70 hover:cursor-zoom-in border-gray-200 lg:hidden"
             onClick={openImageModal}
           />
         </div>

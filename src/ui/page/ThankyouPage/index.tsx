@@ -8,6 +8,7 @@ export default function ThankyouPage() {
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
+    document.title = "Thank you - Comfort Craft"
     if (countdown === 0) {
       navigate({to: "/"});
     } else {
@@ -20,8 +21,8 @@ export default function ThankyouPage() {
   return (
     <>
       <TopNav/>
-      <div className="flex-col content-center items-center flex w-screen text-gray-700">
-        <div className="text-center mt-10 text-xl ">Your order is placed successfully.<br/> Thank you very much</div>
+      <div className="flex-col flex w-screen items-center text-gray-700 h-[calc(100vh-5rem)] justify-center">
+        <div className="text-center text-xl -mt-5">Your order is placed successfully.<br/> Thank you very much</div>
         <img
           src="https://t4.ftcdn.net/jpg/03/29/44/25/360_F_329442520_bs9DE1vhchdtXtbsJXcwGQTpjZd5NzDo.jpg"
           width="1000px"

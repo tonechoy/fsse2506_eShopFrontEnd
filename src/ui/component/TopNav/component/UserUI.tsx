@@ -31,11 +31,14 @@ export default function UserUI() {
         <div className="flex flex-1 align-middle justify-end gap-x-3">
           <p className="self-center">Welcome, {loginUser.email.split("@")[0]}!</p>
           <Link to={"/shoppingcart"}>
-            <button className="btn btn-sm p-2 bg-gray-300"><FontAwesomeIcon icon={faCartShopping} style={{color: "#000000",}}/>
+            <button className="btn btn-sm p-2 bg-gray-300 border-gray-300 hover:border hover:bg-[#122620] group">
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                className="text-black group-hover:text-white"/>
             </button>
           </Link>
           <button
-            className="btn btn-sm p-1 bg-gray-300 text-gray-700"
+            className="btn btn-sm p-1 px-2 bg-gray-300 text-gray-700 border-gray-300 hover:border hover:bg-[#122620] hover:text-gray-300"
             onClick={() => handleLogoutBtn()}
           >
             Logout

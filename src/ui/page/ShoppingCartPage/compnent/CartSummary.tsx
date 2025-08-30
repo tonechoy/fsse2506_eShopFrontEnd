@@ -18,7 +18,7 @@ export default function CartSummary({dtoList, handleCheckout}: Props) {
   };
 
   return (
-    <>
+    // <>
       <div className="flex-3">
         <div className="flex-col border border-gray-400 p-10 space-y-7 h-110">
           <div className="text-3xl">Cart Summary</div>
@@ -41,6 +41,6 @@ export default function CartSummary({dtoList, handleCheckout}: Props) {
           </button>
         </div>
       </div>
-    </>
+    // </>
   )
 }

@@ -2,6 +2,7 @@
 import {Link} from "@tanstack/react-router";
 import "../../../App.css"
 import TopStatus from "../../component/TopNav/component/TopStatus.tsx";
+import {useEffect} from "react";
 
 // interface Props {
 //   isLogin: boolean
@@ -9,6 +10,9 @@ import TopStatus from "../../component/TopNav/component/TopStatus.tsx";
 
 export default function ErrorPage() {
   // const navigate = useNavigate({from: "/"});
+  useEffect(() => {
+    document.title = "Error - Comfort Craft"
+  }, []);
 
   return (
     <div className="max-h-screen overflow-hidden">
@@ -21,7 +25,7 @@ export default function ErrorPage() {
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">404 Error</h1>
             <p className="mb-5">
-              Sorry, this page is currently unavailable or unreachable. Please go back and try again.
+              Oops sorry, something's wrong. This page is currently unavailable or unreachable. Please go back and try again.
             </p>
             <Link to={"/"}>
               <button className="btn btn-error">Go Back</button>

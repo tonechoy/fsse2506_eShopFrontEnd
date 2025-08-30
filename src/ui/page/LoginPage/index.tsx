@@ -58,7 +58,7 @@ export default function LoginPage() {
         <div className="container flex mt-10 justify-center align-middle">
           <div className="left flex-1 hidden lg:block">
             <img
-              src="/ComfortCraft-logo1-light.png"
+              src="/ComfortCraft-logo2-light.png"
             />
           </div>
           <div className="right flex-col flex-1 space-y-8 m-auto p-5">

@@ -24,7 +24,7 @@ export default function ProductItem({itemDto, isLoading}: Props) {
   const notifySuccess = () => {
     toast.success("Added")
   }
-  // const notifyFail = () => {toast.error("Add to cart failed")}
+  const notifyFail = () => {toast.error("Add to cart failed")}
 
   const handleAddCartBtn = async () => {
     try {
@@ -36,7 +36,7 @@ export default function ProductItem({itemDto, isLoading}: Props) {
     } catch (e) {
       console.log(e);
       console.log("add item failed")
-      // notifyFail();
+      notifyFail();
       setIsAdding(false);
       navigate({to: "/error"});
     }
@@ -52,7 +52,6 @@ export default function ProductItem({itemDto, isLoading}: Props) {
     itemDto && !isLoading
       ? (
         <>
-
           <div className="bg-white flex rounded-lg p-6 hover:shadow-lg justify-center sm:flex-col gap-4">
             <div className="relative flex flex-1 w-full justify-center">
               <Link
@@ -118,9 +117,6 @@ export default function ProductItem({itemDto, isLoading}: Props) {
                 >
                   {isAdding ? "Adding" : "Add to cart"}
                 </button>
-                {/*<button className="bg-red-800 text-white wrap-normal p-1 px-3 rounded-2xl text-sm sm:hidden hover:bg-red-600">+*/}
-                {/*  Favorite*/}
-                {/*</button>*/}
               </div>
             </div>
           </div>

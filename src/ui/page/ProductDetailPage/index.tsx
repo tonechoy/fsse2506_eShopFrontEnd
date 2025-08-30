@@ -143,7 +143,7 @@ export default function ProductDetailPage() {
       {productDto && !isLoading &&
           <div className="bg-white w-full h-full my-10" key={productDto.pid}>
 
-              <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 @xs:w-lg md:w-3xl xl:w-6xl">
+              <div className="lg:flex @xs:flex-col w-screen mx-auto gap-3 @xs:w-lg md:w-3xl lg:w-4xl xl:w-6xl">
                   <div className="uppercase italic text-gray-500 font-light lg:hidden">{productDto.category}</div>
                   <div className="text-xl mb-6 text-gray-700 lg:hidden">{productDto.name}</div>
                   <div className="left-container flex-6">
