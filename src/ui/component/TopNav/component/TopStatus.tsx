@@ -6,7 +6,7 @@ export default function TopStatus() {
   return (
     <div className="flex justify-between px-10 bg-[#122620] text-white align-middle h-20 items-center sticky left-0 top-0 z-20">
       <div className="flex-1 flex">
-        <button className="text-start hover:cursor-pointer bg-black">
+        <button className="text-start hover:cursor-pointer bg-black hidden lg:block">
           <Link to={"/"}>
             <img
               src="/ComfortCraft-banner.png"
@@ -14,7 +14,9 @@ export default function TopStatus() {
             />
           </Link>
         </button>
-          <p className="text-2xl self-center font-serif">ComfortCraft</p>
+          <Link to={"/"} className="self-center">
+            <p className="text-2xl self-center font-serif">ComfortCraft</p>
+          </Link>
       </div>
       {/*<h1 className="text-2xl self-center font-serif flex-1 text-center">ComfortCraft</h1>*/}
       <UserUI/>

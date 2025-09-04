@@ -13,6 +13,7 @@ import SearchBar from "../../component/TopNav/component/SearchBar.tsx";
 // import LoadingBackdrop from "../../component/LoadingBackdrop";
 
 export default function ProductListingPage() {
+
   const [getAllProductDto, setGetAllProductDto] = useState<GetAllProductDto[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -32,7 +33,7 @@ export default function ProductListingPage() {
     try {
       // console.log("tab: ", tab);
       // setCategory(tab);
-      console.log(category);
+      // console.log(category);
       setCategory(category)
       if (category === "all") {
         fetchAllProductDto();
@@ -107,7 +108,7 @@ export default function ProductListingPage() {
       {/*</div>*/}
       <img
         src="/photo-1718220216044-006f43e3a9b1.avif"
-        className="w-full h-90 object-cover mb-5"
+        className="w-full h-50 lg:h-75 object-cover mb-5"
       />
       <SearchBar handleSearchBar={handleSearch}/>
       <CategoryTab category={category} handleCategory={handleCategory}/>

@@ -33,8 +33,8 @@ export default function LoginPage() {
     const email = target.email.value;
     const password = target.password.value;
 
-    console.log("email: ", email);
-    console.log("password:", password);
+    // console.log("email: ", email);
+    // console.log("password:", password);
 
     const loginResult = await signInWithEmailAndPassword(email, password);
 

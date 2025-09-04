@@ -1,27 +1,46 @@
 import {Link, useNavigate} from "@tanstack/react-router";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {LoginUserContext} from "../../../../context/LoginUserContext.tsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {signOut} from "../../../../authService/FirebaseAuthService.ts";
 import toast, {Toaster} from "react-hot-toast";
+import {getUserCart} from "../../../../api/cartItem/cartItemApi.ts";
+import {UserCartContext} from "../../../../context/UserCartContext.tsx";
 
 export default function UserUI() {
   const navigate = useNavigate({from: "/"})
   const loginUser = useContext(LoginUserContext);
+  const userCart = useContext(UserCartContext);
 
-  // const openModal = () => {
-  //   const modal = document.getElementById("logoutModalMsg") as HTMLDialogElement;
-  //   if (modal) {
-  //     modal.showModal();
-  //   }
-  // };
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const handleLogoutBtn = async () => {
     await signOut();
-    // openModal();
+    // setCartQuantity("");
     notify();
   }
+
+  const fetchUserCart = async () => {
+    const responseData = await getUserCart();
+    setCartQuantity((responseData.length));
+  }
+
+  useEffect(() => {
+  if (loginUser) {
+    fetchUserCart();
+    // console.log(userCart);
+    setCartQuantity(cartQuantity);
+  } else {
+    setCartQuantity(0)
+  }
+  }, [loginUser]);
+
+  useEffect(() => {
+    if (userCart) {
+      fetchUserCart();
+    }
+  }, [userCart]);
 
   const notify =() => {toast.success("Logout Successful!")}
 
@@ -31,14 +50,20 @@ export default function UserUI() {
         <div className="flex flex-1 align-middle justify-end gap-x-3">
           <p className="self-center">Welcome, {loginUser.email.split("@")[0]}!</p>
           <Link to={"/shoppingcart"}>
-            <button className="btn btn-sm p-2 bg-gray-300 border-gray-300 hover:border hover:bg-[#122620] group">
+            <button className="btn btn-sm p-2 hover:bg-gray-300 border-gray-300 border bg-[#122620] group relative">
               <FontAwesomeIcon
                 icon={faCartShopping}
-                className="text-black group-hover:text-white"/>
+                // style={{color: "#ffffff",}}
+                className="text-gray-50 group-hover:text-gray-700"/>
+              {/*{*/}
+              {/*  cartQuantity > 0 &&*/}
+              {/*   <span className="w-3.5 h-3.5 bg-red-500 rounded-4xl text-[0.5rem] font-bold absolute text-center text-white left-6 bottom-6">{cartQuantity}</span>*/}
+              {/*}*/}
+
             </button>
           </Link>
           <button
-            className="btn btn-sm p-1 px-2 bg-gray-300 text-gray-700 border-gray-300 hover:border hover:bg-[#122620] hover:text-gray-300"
+            className="btn btn-sm p-1 px-2 hover:bg-gray-200 hover:text-gray-700 border-gray-50 border bg-[#122620] text-gray-50"
             onClick={() => handleLogoutBtn()}
           >
             Logout

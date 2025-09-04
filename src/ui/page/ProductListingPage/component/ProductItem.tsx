@@ -3,8 +3,10 @@ import {Link, useNavigate} from "@tanstack/react-router";
 import LoadingItem from "../../../component/LoadingItem";
 import {putCartItem} from "../../../../api/cartItem/cartItemApi.ts";
 // import LoadingBackdrop from "../../../component/LoadingBackdrop";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import toast, {Toaster} from "react-hot-toast";
+import {LoginUserContext} from "../../../../context/LoginUserContext.tsx";
+// import {UserCartContext} from "../../../../context/UserCartContext.tsx";
 
 interface Props {
   itemDto: GetAllProductDto;
@@ -18,29 +20,44 @@ export default function ProductItem({itemDto, isLoading}: Props) {
   //   console.log("isLoading");
   //   return <LoadingItem/>
   // }
+  const loginUser = useContext(LoginUserContext);
+  // const userCart = useContext(UserCartContext);
+
   const [isAdding, setIsAdding] = useState(false);
   const navigate = useNavigate();
 
   const notifySuccess = () => {
     toast.success("Added")
   }
-  const notifyFail = () => {toast.error("Add to cart failed")}
+  const notifyFail = () => {
+    toast.error("Add to cart failed")
+  }
 
   const handleAddCartBtn = async () => {
     try {
+      if (!loginUser) {
+        navigate({to: "/login"});
+      }
       setIsAdding(true);
       await putCartItem(itemDto.pid, 1);
       // console.log("added");
       setIsAdding(false);
       notifySuccess();
-    } catch (e) {
-      console.log(e);
-      console.log("add item failed")
-      notifyFail();
+    } catch {
+      if (loginUser) {
+        notifyFail();
+        setIsAdding(false);
+      }
       setIsAdding(false);
-      navigate({to: "/error"});
     }
   }
+
+  useEffect(() => {
+    if (loginUser) {
+      // console.log(loginUser);
+      // console.log(userCart);
+    }
+  }, [isAdding]);
 
   if (isLoading) {
     return (

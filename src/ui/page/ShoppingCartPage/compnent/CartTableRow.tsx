@@ -44,7 +44,7 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
   }
   if (isLoading) {
     return (
-      <tr className="h-[15%] object-cover overflow-hidden">
+      <tr className="flex h-[15%] object-cover overflow-hidden w-full p-7">
         {/*<hr className="text-gray-300"/>*/}
         {/*<div className="flex space-x-[5%] py-7">*/}
         <td className="flex-1 skeleton w-[100%] h-40 min-h-[10%] max-h-[100%] bg-gray-100"></td>
@@ -103,7 +103,7 @@ export default function CartTableRow({dto, handleSelectorQuantityChange, handleD
           <FontAwesomeIcon icon={faTrash} style={{color: "#ffffff",}}/>
         </button>
       </td>
-      <td className="flex-1 flex justify-end">
+      <td className="flex-1 flex justify-end min-w-6">
         {/*{*/}
         {/*  !isLoading*/}
         {/*  ? <>${(dto.price * dto.cartQuantity).toFixed(2).toLocaleString()}</>*/}

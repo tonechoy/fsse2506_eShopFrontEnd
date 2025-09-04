@@ -33,7 +33,7 @@ export default function CartContainer({dtoList, handleSelectorQuantityChange, ha
 
     return (
       <>
-        <div className="@xs:flex-col lg:flex mx-auto my-10 gap-15 mb-10 h-full bg-white w-lg md:2xl xl:w-6xl">
+        <div className="@xs:flex-col lg:flex mx-auto my-10 gap-5 lg:gap-15 mb-10 h-full bg-white w-2xl lg:w-5xl xl:w-6xl">
             <div className="flex-6 flex-col space-y-4 bg-white">
               <div className="text-3xl mb-4">Your secure bag</div>
               <div>Items available to buy now</div>

@@ -49,10 +49,10 @@ export default function CheckOutPage() {
   }
 
   return (
-    <div className="bg-white text-gray-700 min-h-auto">
+    <div className="@xs:flex-col lg:flex mx-auto my-10 gap-5 lg:gap-15 mb-10 h-full bg-white w-md md:w-2xl lg:w-5xl xl:w-6xl">
       <div className="w-md md:w-2xl lg:w-4xl xl:w-6xl mx-auto my-10">
         <div className="text-3xl mb-7 font-semibold">Checking Out</div>
-        <div className="@xs:flex-col lg:flex gap-15">
+        <div className="@xs:flex-col lg:flex gap-10">
           {/*//left container*/}
           <div className="flex-7">
             {
