@@ -2,7 +2,7 @@ import {faBackwardStep} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
 
-export default function ScrollToTopBtn() {
+export default function Index() {
   const [showBtn, setshowBtn] = useState(false);
 
   useEffect(() => {
