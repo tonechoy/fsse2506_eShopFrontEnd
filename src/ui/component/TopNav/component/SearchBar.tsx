@@ -20,7 +20,7 @@ export default function SearchBar({handleSearchBar}: Props) {
   }
 
   return (
-    <form className="flex justify-center p-3" onSubmit={handleSearchBtn}>
+    <form id="search-bar" className="flex justify-center p-3" onSubmit={handleSearchBtn}>
       <input
         type="text"
         value={keyword}

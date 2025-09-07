@@ -77,8 +77,8 @@ export default function ProductImageDisplay({imageUrl}: Props) {
       {/*  }*/}
       {/*</div>*/}
 
-      <div className="w-2xl lg:w-full">
-        <div className="flex lg:flex-col lg:mx-auto">
+      <div className="w-md md:w-2xl lg:w-full">
+        <div className="flex lg:flex-col lg:mx-auto bg-white">
           <img
             src={displayImage}
             className="mx-auto object-contain h-120 max-w-120 hover:cursor-zoom-in mb-3 hidden lg:block"

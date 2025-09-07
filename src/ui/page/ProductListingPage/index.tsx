@@ -9,6 +9,7 @@ import {getAllProduct, getProductByCategory, getProductByKeyword} from "../../..
 import {useNavigate} from "@tanstack/react-router";
 import CategoryTab from "../../component/CategoryTab";
 import SearchBar from "../../component/TopNav/component/SearchBar.tsx";
+import ScrollToTopBtn from "../../component/ScrollToTopBtn.tsx";
 // import LoadingBackdrop from "../../component/LoadingBackdrop";
 // import LoadingBackdrop from "../../component/LoadingBackdrop";
 
@@ -107,8 +108,9 @@ export default function ProductListingPage() {
       {/*  <div className="text-black z-30 text-center">Testing</div>*/}
       {/*</div>*/}
       <img
-        src="/photo-1718220216044-006f43e3a9b1.avif"
-        className="w-full h-50 lg:h-75 object-cover mb-5"
+        id="home-banner"
+        src="/title-banner.png"
+        className="w-full h-40 lg:h-75 object-cover mb-5"
       />
       <SearchBar handleSearchBar={handleSearch}/>
       <CategoryTab category={category} handleCategory={handleCategory}/>
@@ -117,6 +119,7 @@ export default function ProductListingPage() {
         getAllProductDto && !isError &&
         <ProductContainer getAllProductDto={getAllProductDto} isLoading={isLoading}/>
       }
+      <ScrollToTopBtn/>
 
     </div>
   )

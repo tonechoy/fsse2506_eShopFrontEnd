@@ -41,8 +41,8 @@ export default function ProductItem({itemDto, isLoading}: Props) {
       setIsAdding(true);
       await putCartItem(itemDto.pid, 1);
       // console.log("added");
-      setIsAdding(false);
       notifySuccess();
+      setIsAdding(false);
     } catch {
       if (loginUser) {
         notifyFail();

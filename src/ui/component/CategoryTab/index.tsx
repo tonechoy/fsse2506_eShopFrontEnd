@@ -7,7 +7,9 @@ export default function CategoryTab({category, handleCategory}: Props) {
 
   return (
     <div
-      role="tablist" className="tabs tabs-border mx-auto gap-2 rounded-none text-gray-700 w-md xl:w-6xl lg:w-4xl md:w-2xl sm:w-xl"
+      id="category-tab"
+      role="tablist"
+      className="tabs tabs-border mx-auto gap-2 rounded-none text-gray-700 w-md xl:w-6xl lg:w-4xl md:w-2xl sm:w-xl"
     >
       {/*<hr/>*/}
 

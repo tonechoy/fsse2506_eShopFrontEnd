@@ -28,6 +28,7 @@ export default function ProductContainer({getAllProductDto, isLoading}: Props) {
           }
 
         </div>
+
       </div>
     </div>
   )
