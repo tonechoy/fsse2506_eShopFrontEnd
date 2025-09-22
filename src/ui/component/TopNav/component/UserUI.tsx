@@ -27,13 +27,13 @@ export default function UserUI() {
   }
 
   useEffect(() => {
-  if (loginUser) {
-    fetchUserCart();
-    // console.log(userCart);
-    setCartQuantity(cartQuantity);
-  } else {
-    setCartQuantity(0)
-  }
+    if (loginUser) {
+      fetchUserCart();
+      // console.log(userCart);
+      setCartQuantity(cartQuantity);
+    } else {
+      setCartQuantity(0)
+    }
   }, [loginUser]);
 
   useEffect(() => {
@@ -42,17 +42,22 @@ export default function UserUI() {
     }
   }, [userCart]);
 
-  const notify =() => {toast.success("Logout Successful!")}
+  const notify = () => {
+    toast.success("Logout Successful!")
+  }
 
   if (loginUser) {
     return (
       <>
         <div className="flex flex-1 align-middle justify-end gap-x-3">
-          <div className="flex-col self-center  @xs:block sm:hidden">
-
-          <FontAwesomeIcon icon={faUser} style={{color: "#ffffff",}} className="self-center"/>
+          <button
+            className="flex-col self-center @xs:block sm:hidden"
+            // data-tip={loginUser.email.split("@")[0]}
+            // data-tooltip-placement="left-0"
+          >
+            <FontAwesomeIcon icon={faUser} style={{color: "#ffffff",}} className="self-center"/>
             {/*<p>{loginUser.email.split("@")[0]}</p>*/}
-          </div>
+          </button>
           <p className="self-center hidden sm:block">Welcome, {loginUser.email.split("@")[0]}!</p>
           <Link to={"/shoppingcart"} className="self-center">
             <button className="btn btn-sm p-2 hover:bg-gray-300 border-gray-300 border bg-[#122620] group relative">
